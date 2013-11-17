@@ -1,0 +1,9 @@
+<% @title = "Edit " + @user.name %>
+
+<h1> Edit <%= @user.name %></h1>
+
+<%= form_for @user do |f| %>
+<%= render "user_form", f: f %>
+<%= f.submit "Update Profile", class: "btn btn-primary" %>
+<% end %>
+
