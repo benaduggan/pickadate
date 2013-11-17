@@ -1,10 +1,24 @@
 UnknownBusiness::Application.routes.draw do
-  get "users/new"
+  
+  root 'static_pages#home'
+  
+  get 'home', to: "static_pages#home", as: 'home'
+  get 'help', to: "static_pages#help", as: 'help'
+  get 'about', to: "static_pages#about", as: "about"
+  get 'contact', to: "static_pages#contact", as: 'contact'
+  
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: "sessions#new", as: 'login'
+  delete 'logout', to: "sessions#destroy", as: 'logout'
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
