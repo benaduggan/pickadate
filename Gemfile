@@ -18,8 +18,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'faker', '1.1.2'
 
-gem 'will_paginate', '3.0.4'
-gem 'will_paginate-bootstrap'
+gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params) then
+    if @user.update_attributes(update_params) then
       flash[:success] = "Successfully updated!"
       redirect_to @user
     else
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if !current_user?(@user) then
       @user.destroy
-      flash[:success] = "User deleted!"
+      flash[:success] = @user.username + " deleted!"
       redirect_to users_path
     else
       flash[:danger] = "You tried to delete yourself you idiot!"
@@ -56,17 +56,15 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation )
+      params.require(:user).permit(:username, :email, :password, :password_confirmation )
+    end
+    
+    def update_params
+      params.require(:user).permit(:firstname, :lastname, :username, :email)
     end
     
     def admin_user
       redirect_to root_path unless current_user.admin?
-    end
-    
-    def signed_in_user
-      unless signed_in?
-        redirect_to login_path, notice: "Please sign in."
-      end
     end
     
     def correct_user
