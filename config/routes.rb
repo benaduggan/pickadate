@@ -1,4 +1,8 @@
 UnknownBusiness::Application.routes.draw do
+  match 'auth/:provider/callback' => 'sessions#create', via: [:get, :post]
+  #match 'auth/failure', to: redirect('/')
+  match 'signout' => 'sessions#destroy', as: 'signout', via: [:get, :post]
+  
   
   root 'static_pages#home'
   
@@ -13,6 +17,9 @@ UnknownBusiness::Application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: "sessions#new", as: 'login'
   delete 'logout', to: "sessions#destroy", as: 'logout'
+  
+  
+  
   
   
   # The priority is based upon order of creation: first created -> highest priority.
