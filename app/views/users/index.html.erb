@@ -7,7 +7,7 @@
 <ul class="users">
   <% @users.each do |user| %>
     <li>
-      <a href=<%= user_path(user) %> ><%= gravatar_for user %></a>
+      <a href=<%= user_path(user) %></a>
       <%= link_to user.username, user %>
       <% if current_user.admin? && !current_user?(user) %>
       | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure you want to delete #{user.username}?" } %>

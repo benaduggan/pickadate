@@ -1,27 +1,56 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "The Cool Crap App", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav">
-          <% if signed_in? %>
-          	  <li class='pull-right'>
-                  <%= link_to "Sign out", logout_path, method: "delete" %>
-              </li>
-              <li class='pull-right'><%= link_to "Users", users_path %></li>
-              <li class='pull-right'><%= link_to "Profile", current_user %></li>
-              <li class='pull-right'><%= link_to "Settings", edit_user_path(current_user) %></li>
-              
-              <li class='pull-right'><%= link_to "Help", help_path %></li>
-              <li class='pull-right'><%= link_to "Home", root_path %></li>
-         </ul>
-          <% else %>
-            <li class='pull-right'><%= link_to "Sign in", login_path %></li>
-            <li class='pull-right'><%= link_to "Help", help_path %></li>
-            <li class='pull-right'><%= link_to "Home", root_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href='/'>Pick-a-Date!</a>
     </div>
-  </div>
-</header>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <% if signed_in? %>
+              <li><%= link_to "Users", users_path %></li>
+              <li><a href="#">My Dates</a></li>
+          <% else %> 
+              <li><%= link_to "Sign in", login_path %></li>
+          <% end %>
+    <% if signed_in? %>
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Find a Date <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+              <li><a href="#">Top Daters</a></li>
+              <li><a href="#">Random Date</a></li>
+          </ul>
+        </li>
+    <%end%>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+            <% if signed_in? %>
+              <li><%= link_to "Profile", current_user %></li> 
+            <% end %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <% if signed_in? %>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <% end %>
+            <li><%= link_to "Help", help_path %></li>
+            <li class="divider"></li>
+              <% if current_user %>
+            <li><%= link_to "Sign out", signout_path %></li>
+              <% else %>
+            <li><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
+              <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
