@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
     if user.first then
-      user.first = false
-      user.save
+      user.toggle!(:first)
       redirect_to edit_user_path(user)
     else
       redirect_to root_path
