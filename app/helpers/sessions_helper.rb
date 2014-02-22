@@ -21,10 +21,10 @@ module SessionsHelper
   end
   
 
-  def current_user #this is commented out because it conflicts with the one in the application controller - causes CSRF attack
-    remember_token = User.encrypt(cookies[:remember_token])
-    @current_user ||= User.find_by(remember_token: remember_token)
-  end
+  #def current_user #this is commented out because it conflicts with the one in the application controller - causes CSRF attack
+    #remember_token = User.encrypt(cookies[:remember_token])
+    #@current_user ||= User.find_by(remember_token: remember_token)
+  #end
 
   
   def current_user?(user)

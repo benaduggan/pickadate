@@ -4,6 +4,20 @@ def self.from_omniauth(auth)
     user.provider = auth.provider
     user.uid = auth.uid
     user.username = auth.info.name
+    user.firstname = auth.info.first_name
+    user.lastname = auth.info.last_name
+    user.email = auth.info.email
+    user.hometown = auth.info.location  
+    user.relationshipstatus = auth["extra"]["raw_info"]["relationship_status"]
+    
+    user.aboutme= "Hard Coded in user.rb... probably want to make this an edit feature."
+    
+    user.age = auth['extra']['raw_info']['birthday']
+    #user.year = auth["extra"]["raw_info"]["education"][1]["year"]["name"].to_i
+    #user.major = auth["extra"]["raw_info"]["education"][1]["concentration"][0]['name']
+    
+    
+    
     user.oauth_token = auth.credentials.token
     user.oauth_expires_at = Time.at(auth.credentials.expires_at)
     user.save!
