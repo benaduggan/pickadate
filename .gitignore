@@ -15,5 +15,9 @@
 /log/*.log
 /tmp
 
+# ignore Facebook files with App ID's and Secrets
+/app/assets/javascripts/facebook*
+/config/initializers/omniauth.rb
+
 /app/assets/javascripts/facebook.js.coffee.erb
 /config/initializers/omniauth.rb

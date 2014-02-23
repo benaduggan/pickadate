@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-    #before_save { self.email = email.downcase }
+    before_save { self.email = email.downcase }
     before_create :create_remember_token
     
     VALID_USERNAME_REGEX = /[a-z0-9_-]\z/
@@ -22,8 +22,14 @@ class User < ActiveRecord::Base
           
           user.firstname = auth.info.first_name unless user.firstname?
           user.lastname = auth.info.last_name unless user.lastname?
-          user.email = auth.info.email unless user.email?
-          user.hometown = auth.info.location unless user.hometown?
+          
+          user.email = 'temp@temp.com' #for validation you have to have an email... but sometimes an email doesn't come over :(
+          if auth.info.email
+            user.email = auth.info.email unless user.email!='temp@temp.com'
+          end
+          
+          
+          user.hometown = auth.info.location unless user.hometown?         
           user.relationshipstatus = auth["extra"]["raw_info"]["relationship_status"] unless user.relationshipstatus?
           user.aboutme = auth['extra']['raw_info']['birthday']
           
