@@ -1,21 +1,35 @@
 class User < ActiveRecord::Base
-  
+
     def self.from_omniauth(auth)
-      where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.username = auth.info.name
-        
-        user.firstname = auth.info.first_name unless user.firstname?
-        user.lastname = auth.info.last_name unless user.lastname?
-        user.email = auth.info.email unless user.email?
-        user.hometown = auth.info.location unless user.hometown?
-        user.relationshipstatus = auth["extra"]["raw_info"]["relationship_status"] unless user.relationshipstatus?
-        user.age = auth['extra']['raw_info']['birthday'] unless user.age?        
-        
-        user.oauth_token = auth.credentials.token
-        user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-        user.save!
+      if auth
+        where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+          user.provider = auth.provider
+          user.uid = auth.uid
+          user.username = auth.info.name unless user.username?
+          
+          user.firstname = auth.info.first_name unless user.firstname?
+          user.lastname = auth.info.last_name unless user.lastname?
+          user.email = auth.info.email unless user.email?
+          user.hometown = auth.info.location unless user.hometown?
+          user.relationshipstatus = auth["extra"]["raw_info"]["relationship_status"] unless user.relationshipstatus?
+          user.aboutme = auth['extra']['raw_info']['birthday']
+          
+          bday = auth['extra']['raw_info']['birthday']
+          day = bday.slice(0,2)
+          month = bday.slice(3,2)
+          year = bday.slice(6,4)
+          dob=Date.parse(day+'/'+day+'/'+year)
+          now=Time.now.to_date
+          user.age = (now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)).to_i #unless user.age?        
+          
+
+
+          
+          
+          user.oauth_token = auth.credentials.token
+          user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+          user.save!
+        end
       end
     end
   
@@ -44,5 +58,8 @@ class User < ActiveRecord::Base
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
     end
+
+
+
 =end
 end
