@@ -1,7 +1,7 @@
 UnknownBusiness::Application.configure do
   
-  ENV['FACEBOOK_APP_ID'] = "655498167848316";
-  ENV['FACEBOOK_SECRET'] = "aa5293d55934d3432f89aa0e21b8e291";
+  ENV['FACEBOOK_APP_ID'] = "485006518272731";
+  ENV['FACEBOOK_SECRET'] = "0de7df118e6ce88b64c9ae2e9e788d20";
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
