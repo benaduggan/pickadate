@@ -2,13 +2,14 @@ class User < ActiveRecord::Base
   
     before_save { self.email = email.downcase }
     before_create :create_remember_token
-    
     VALID_USERNAME_REGEX = /[a-z0-9_-]\z/
     validates :username, presence: true, uniqueness: true, length: { maximum: 30 }, :format => { :with => VALID_USERNAME_REGEX }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-    validates :password, length: { minimum: 6}
+    #validates :password, length: { minimum: 6 }
     has_secure_password
+    validates :year, presence: true
+    #validates :major, presence: true
   
     def self.from_omniauth(auth)
       if auth #hash that comes back from Facebook, this is so we can do both facebook and normal users through same sessions controller
@@ -17,8 +18,8 @@ class User < ActiveRecord::Base
           user.uid = auth.uid
           user.username = auth.info.name unless user.username?
           
-          user.password = User.generate_password
-          user.password_confirmation = user.password
+          user.password = 'helllooo'
+          user.password_confirmation = 'helllooo'
           
           user.firstname = auth.info.first_name unless user.firstname?
           user.lastname = auth.info.last_name unless user.lastname?
@@ -42,6 +43,8 @@ class User < ActiveRecord::Base
           now=Time.now.to_date
           user.age = (now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)).to_i #unless user.age?        
 
+          
+          user.aboutme = 'Tell us about yourself!'
           
           user.oauth_token = auth.credentials.token
           user.oauth_expires_at = Time.at(auth.credentials.expires_at)
