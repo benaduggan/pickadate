@@ -11,6 +11,7 @@ UnknownBusiness::Application.routes.draw do
   get 'about', to: "static_pages#about", as: "about"
   get 'contact', to: "static_pages#contact", as: 'contact'
   
+  resources :pickadates
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   
