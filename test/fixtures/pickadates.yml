@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  location: MyString
+  time: 2014-06-03 00:25:48
+  description: MyString
+  rating: 1
+  rsvp_status: MyString
+
+two:
+  title: MyString
+  location: MyString
+  time: 2014-06-03 00:25:48
+  description: MyString
+  rating: 1
+  rsvp_status: MyString

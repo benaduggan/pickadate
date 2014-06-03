@@ -1,0 +1,12 @@
+<% @title = "All Dates" %>
+
+<h1>All Dates</h1>
+
+<ul class="dates">
+  <% @pickadates.each do |date| %>
+    <li>
+      <a href=<%= user_path(date) %></a>
+      <%= link_to date.title, date %>
+    </li>
+  <% end %>
+</ul>
