@@ -1,0 +1,23 @@
+<% @title = "Edit " + @date.title %>
+
+<h1> Edit <%= @date.title %></h1>
+
+<% if @date.errors.any? %>
+    <div class="alert alert-danger"> 
+    <p>The form contains <%= pluralize(@date.errors.count, "error") %>.</p>
+    </div>
+    <ul>
+      <% @date.errors.full_messages.each do |message| %>
+      <li class="text-danger"> <%= message %> </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<%= form_for @date do |f| %>
+
+<%= render "pickadate_form", f: f%>
+
+
+<%= f.submit "Update Profile", class: "btn btn-primary" %>
+<% end %>
+
