@@ -4,6 +4,10 @@ class PickadatesController < ApplicationController
     @pickadates = Pickadate.all
   end
   
+  def new
+    @date = Pickadate.new
+  end
+  
   def create
     @date = Pickadate.new(date_params)
     if @date.save then
