@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :random_user
   
   def random_user
-    @random_user = User.all[rand(0..User.all.length)]
+    @random_user = User.all[rand(0..User.all.length-1)]
   end
   
   private
