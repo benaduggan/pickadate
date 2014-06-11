@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    has_many :pickadates
   
     before_save { self.email = email.downcase }
     before_create :create_remember_token
@@ -6,8 +7,8 @@ class User < ActiveRecord::Base
     validates :username, presence: true, uniqueness: true, length: { maximum: 30 }, :format => { :with => VALID_USERNAME_REGEX }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-    #validates :password, length: { minimum: 6 }
     has_secure_password
+    #validates :password, length: { minimum: 6 }
     #validates :year, presence: true
     #validates :major, presence: true
   
@@ -45,6 +46,8 @@ class User < ActiveRecord::Base
 
           
           user.aboutme = 'Tell us about yourself!'
+          user.pictureurl = (auth['info']['image'].to_s + "?type=large")
+          
           
           user.oauth_token = auth.credentials.token
           user.oauth_expires_at = Time.at(auth.credentials.expires_at)

@@ -4,7 +4,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery 
   
   helper :users
-   
+  
+  before_filter :random_user
+  
+  def random_user
+    @random_user = User.all[rand(0..User.all.length)]
+  end
+  
   private
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -12,4 +18,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   include SessionsHelper
+  
+
+  
 end

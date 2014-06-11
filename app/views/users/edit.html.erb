@@ -56,9 +56,8 @@
 </div>
 
 <div class='form-group'>
-	<%= f.label :year, "class*" %>
-  <% classlist=["Freshman - #{Time.now.year.to_i+3} ", "Sophomore - #{Time.now.year.to_i+2}", "Junior - #{Time.now.year.to_i+1}", "Senior - #{Time.now.year.to_i}"] %>
-  <%= f.select :year, classlist,{}, class: 'form-control' %>
+  <%= f.label :year, "Class of*:" %>
+  <%= f.select :year, [2018,2017,2016,2015],{}, class: 'form-control' %>
 </div>
 
 

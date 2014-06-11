@@ -6,6 +6,20 @@ $grayMediumLight: #eaeaea;
 $grayLight: #afafaf;
 $grayDarker: #eaeaff;
 
+.jumbotron{
+  padding-bottom:210px;
+}
+
+.jumbotron p{
+  margin-bottom:0;
+  display:table;
+}
+
+.jumbotron h1{
+  margin-bottom:0;
+}
+
+
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
