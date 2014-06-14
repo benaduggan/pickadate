@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140614162238) do
     t.string   "rsvp_status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "floor"
+    t.integer  "floor_id"
     t.integer  "owner"
   end
 
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140614162238) do
     t.integer  "age"
     t.integer  "year"
     t.string   "major"
-    t.string   "floor"
+    t.integer  "floor_id"
     t.string   "aboutme"
     t.string   "hometown"
     t.string   "relationshipstatus"
