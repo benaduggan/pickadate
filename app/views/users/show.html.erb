@@ -3,52 +3,45 @@
 <div class="row">
 
     <div class="col-xs-12">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
           <div class="jumbotron">
-            <h1><%= @user.username %>'s Profile</h1>
-            <p><%= @user.aboutme %></p>
-            <div class='picture'>
-              <%= image_tag(@user.pictureurl, class: "pull-right") %>
+            <h1><%= @user.firstname + ' ' + @user.lastname %>'s Profile</h1>
+        <p>
               <% if @user.pictureurl==nil %>
-                <%= image_tag("http://imgur.com/1qXcMaY.jpg", class: 'pull-right')%>
+              <%= image_tag("http://imgur.com/1qXcMaY.jpg", class: 'profilePicture', height: "200", align: 'left')%>
+              <% else %>
+              <%= image_tag(@user.pictureurl, class: 'profilePicture', height: "200", align: 'left') %>              
               <%end%>
-            </div>
             
-            
+           <%= @user.aboutme %></p>
           </div>
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
-              <h2 class="panel panel-heading">Email</h2>
-              <p class="panel-body"><%= @user.email %></p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
-              <h2 class="panel panel-heading">Hometown</h2>
-              <p class="panel-body"><%= @user.hometown %></p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
-              <h2 class="panel panel-heading">Relationship Status</h2>
-              <p class="panel-body"><%= @user.relationshipstatus %></p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
-              <h2 class="panel panel-heading">Age</h2>
-              <p class="panel-body"><%= @user.age %></p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+              <h2 class="panel panel-heading">Major</h2>
+              <p class="well well-sm"><%= @user.major %></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
               <h2 class="panel panel-heading">Year</h2>
-              <p class="panel-body">Class of <%= @user.year %></p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+              <p class="well well-sm">Class of <%= @user.year %></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
-              <h2 class="panel panel-heading">Major</h2>
-              <p class="panel-body"><%= @user.major %></p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+              <h2 class="panel panel-heading">Age</h2>
+              <p class="well well-sm"><%= @user.age %></p>
             </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
+              <h2 class="panel panel-heading">Email</h2>
+              <p class="well well-sm"><%= @user.email %></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
+              <h2 class="panel panel-heading">Hometown</h2>
+              <p class="well well-sm"><%= @user.hometown %></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
+              <h2 class="panel panel-heading">Relationship Status</h2>
+              <p class="well well-sm"><%= @user.relationshipstatus %></p>
+            </div><!--/span-->
+
+
+
           </div><!--/row-->
         </div>
 </div>

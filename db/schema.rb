@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610225006) do
+ActiveRecord::Schema.define(version: 20140614162238) do
+
+  create_table "dorms", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "floor_id"
+  end
+
+  create_table "floors", force: true do |t|
+    t.string   "name"
+    t.string   "gender"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "dorm_id"
+  end
 
   create_table "pickadates", force: true do |t|
     t.string   "title"

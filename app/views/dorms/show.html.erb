@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dorm.name %>
+  <% @dorm.floors.each do |f| %>
+  <li><%= f.name %></li>
+  <%end%>
+</p>
+
+<%= link_to 'Edit', edit_dorm_path(@dorm) %> |
+<%= link_to 'Back', dorms_path %>

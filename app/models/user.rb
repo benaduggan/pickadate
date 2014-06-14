@@ -12,6 +12,13 @@ class User < ActiveRecord::Base
     #validates :year, presence: true
     #validates :major, presence: true
   
+    include Uploadable
+  
+    def user
+      self
+    end
+  
+  
     def self.from_omniauth(auth)
       if auth #hash that comes back from Facebook, this is so we can do both facebook and normal users through same sessions controller
         where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

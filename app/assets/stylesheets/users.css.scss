@@ -11,15 +11,29 @@ body > div.container > div.row > div > div.row > div{
   margin-left:5px;
   margin-right:5px;
   width:370px;
+  height:132px;
 }
 
-img {
+h3{
+  text-align:center;
+}
+
+.profilePicture{
   border:1px solid #fff;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;  
+  margin-right:10px;
 }
+
 
 body > div.container > div.row > div > div.row {
   margin: 0 auto;
+}
+
+
+body > div.container > div.row > div > div.row > div > p.well.well-sm{
+  text-align:center;
+  display:table;
+  margin: auto auto 25px auto;
 }

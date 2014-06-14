@@ -13,7 +13,7 @@
     </ul>
 <% end %>
 
-<%= form_for @user do |f| %>
+<%= form_for(@user) do |f| %>
 <div class='form-group'>
 	<%= f.label :firstname, "First Name" %>
 	<%= f.text_field :firstname, class: 'form-control' %>
@@ -34,7 +34,6 @@
 </div>
 
 <div class='form-group'>
-  
   <% rellist = ['Single', 'In a relationship', 'Engaged', 'Married', "It's complicated", "Open relationship"] %>
 	<%= f.label :relationshipstatus, "Relationship Status" %>
   <%= f.select :relationshipstatus, rellist, {}, class: 'form-control'%>
@@ -42,7 +41,7 @@
 
 <div class='form-group'>
 	<%= f.label :aboutme, "About Me" %>
-	<%= f.text_field :aboutme, class: 'form-control' %>
+  <%= f.text_area :aboutme, class: 'form-control' %>
 </div>
 
 <div class='form-group'>
@@ -51,7 +50,7 @@
 </div>
 
 <div class='form-group'>
-	<%= f.label :major, "major*" %>
+	<%= f.label :major, "Major*" %>
 	<%= f.text_field :major, class: 'form-control' %>
 </div>
 
@@ -59,6 +58,11 @@
   <%= f.label :year, "Class of*:" %>
   <%= f.select :year, [2018,2017,2016,2015],{}, class: 'form-control' %>
 </div>
+
+  <div class = 'form-group'>
+    <%= f.label :upload, "Upload file" %>
+    <%= f.file_field :upload, class: 'form-control' %> 
+  </div>
 
 
 <%= f.submit "Update Profile", class: "btn btn-primary" %>

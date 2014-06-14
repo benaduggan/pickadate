@@ -4,6 +4,8 @@ gem 'validates_timeliness', github: 'softace/validates_timeliness', branch:  'su
 
 gem 'omniauth-facebook'
 
+gem 'bootstrap_form'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
