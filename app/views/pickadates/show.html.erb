@@ -1,16 +1,53 @@
 <% @title = @date.title %>
 
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= @date.title %>
-      </h1>
-      <p>Location: <%= @date.location %></p>
-      <p>Time: <%= @date.time %></p>
-      <p>Description: <%= @date.description %></p>
-      <p>Floor: <%= @date.floor %></p>
-      <p>Owner:  <%= @owner.firstname + " " + @owner.lastname %></p>
-    </section>
-  </aside>
+    <div class="col-xs-12">
+      <div><% if current_user == @owner %><%= link_to "Edit Date", edit_pickadate_path(@date), "class" => "btn btn-primary pull-right" %><%end%></div>
+          <div class="jumbotron">
+
+            <h1><%= @date.title %></h1>
+            
+            <p>
+                <!--
+                Date Planner:  <%= @owner.firstname + " " + @owner.lastname %>
+                <% if @owner.pictureurl==nil %>
+                <%= image_tag("http://imgur.com/1qXcMaY.jpg", class: 'profilePicture', height: "200", align: 'left')%>
+                <% else %>
+                <%= image_tag(@owner.pictureurl, class: 'profilePicture', height: "200", align: 'left') %>              
+                <%end%>
+                -->
+
+               <%= @date.description %>
+              
+              <% if current_user.floor == @date.floor && current_user !=  @owner %>
+              <button class="btn btn-primary pull-right">Attending</button>
+              <button class="btn btn-primary pull-right">Maybe</button>
+              <button class="btn btn-primary pull-right">Eh... No.</button>
+              <%end%>
+              
+            </p>
+          </div>
+          
+
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
+              <h2 class="panel panel-heading">Floor</h2>
+              <p class="well well-sm"><%= @date.floor.name %></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
+              <h2 class="panel panel-heading">Location</h2>
+              <p class="well well-sm"><%= @date.location %></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
+              <h2 class="panel panel-heading">Time</h2>
+              <p class="well well-sm"><%= @date.time.strftime("%B %e at %l:%M%p") %></p>
+            </div><!--/span-->
+            
+            <div class="col-9 col-sm-9 col-lg-9 panel panel-primary">
+              <h2 class="panel panel-heading">Users</h2>
+              <p class="well well-sm">Place Holder for users<% @date.users %></p>
+            </div><!--/span-->
+            
+          </div><!--/row-->
+        </div>
 </div>

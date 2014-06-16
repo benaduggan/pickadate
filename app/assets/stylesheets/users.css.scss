@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.users{ //this is for the users index table and the pickadate index table
+  border-collapse:separate;
+  margin-top:30px;
+  margin-bottom:30px;
+}
+
+
+
+body > div.container > table > tbody > tr > td {
+  width:80px;
+}
+
 body > div.container > div.row > div > div.row > div > h2{
   margin-top:0;
 }
@@ -37,3 +49,18 @@ body > div.container > div.row > div > div.row > div > p.well.well-sm{
   display:table;
   margin: auto auto 25px auto;
 }
+
+#edit_user_1 > div{
+  margin: 0 25px 25px 25px;
+  width: 340px;
+}
+
+body > div > div.row > input {
+  margin-top:25px;
+  width: 100%;
+}
+
+#user_upload{
+  width:200px;
+}
+

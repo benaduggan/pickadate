@@ -25,7 +25,7 @@ create_Dorm_and_Floor_entries( "Wengatz" ,[{name: '1st West' , gender: 'male'},{
 
 create_Dorm_and_Floor_entries( 'Olson' ,[{name: '1st East' , gender: 'female'},{name: '2nd East' , gender: 'female'},{name: '3rd East' , gender: 'female'},{name: '2nd Center' , gender: 'female'},{name: '3rd Center' , gender: 'female'},{name: '1st East' , gender: 'female'},{name: '2nd West' , gender: 'female'},{name: '3rd West' , gender: 'female'}])
 
-create_Dorm_and_Floor_entries( 'English' ,[{name: '1st North' , gender: 'female'},{name: '1st South' , gender: 'female'},{name: '2nd North' , gender: 'female'},{name: '2nd Center' , gender: 'female'},{name: '2nd South' , gender: 'female'},{name: '3rd North' , gender: 'female'},{name: '3rd Center' , gender: 'female'},{name: '3rd South' , gender: 'female'}])
+create_Dorm_and_Floor_entries( 'English' ,[{name: 'Cellar', gender: 'female'},{name: '1st North' , gender: 'female'},{name: '1st South' , gender: 'female'},{name: '2nd North' , gender: 'female'},{name: '2nd Center' , gender: 'female'},{name: '2nd South' , gender: 'female'},{name: '3rd North' , gender: 'female'},{name: '3rd Center' , gender: 'female'},{name: '3rd South' , gender: 'female'}])
 
 create_Dorm_and_Floor_entries('Gerig',[{name: '2G' , gender: 'female'},{name: '3G' , gender: 'female'},{name: 'Foso' , gender: 'male'}])
 

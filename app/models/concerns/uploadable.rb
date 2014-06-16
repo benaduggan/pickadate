@@ -1,17 +1,19 @@
 module Uploadable
   extend ActiveSupport::Concern
   included do
-    validates :pictureurl, presence: true
+    #validates :pictureurl, presence: true
     validate :check_location
     before_destroy :delete_file
   end 
   
   def delete_file
-    File.delete(self.pictureurl)
+    if !self.pictureurl.nil?
+      File.delete(self.pictureurl)
+    end
   end
   
   def check_location
-    if self.pictureurl && File.exists?('app/assets/imagaes/' + self.pictureurl.to_s)
+    if self.pictureurl.nil? && File.exists?('app/assets/imagaes/' + self.pictureurl.to_s) #if nil and if it already exists, then it is invalid
       errors.add(:pictureurl, "is invalid" + self.pictureurl.to_s)
     end
   end 

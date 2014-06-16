@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614162238) do
+ActiveRecord::Schema.define(version: 20140615172844) do
 
   create_table "dorms", force: true do |t|
     t.string   "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20140614162238) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "dorm_id"
+    t.integer  "pickadate_id"
+    t.integer  "user_id"
   end
 
   create_table "pickadates", force: true do |t|

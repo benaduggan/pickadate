@@ -2,6 +2,13 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery 
+
+  def floors
+    dorm = Dorm.find(params[:dorm_id])
+    respond_to do |format|
+    format.json { render :json => dorm.floors }
+  end
+end
   
   helper :users
   

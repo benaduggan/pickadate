@@ -1,30 +1,112 @@
 <% if @user.errors.any? %>
     <div class="alert alert-danger"> 
-    <p>The form contains <%= pluralize(@user.errors.count, "error") %>.</p>
+      <p>The form contains <%= pluralize(@user.errors.count, "error") %>.</p>
     </div>
     <ul>
       <% @user.errors.full_messages.each do |message| %>
       <li class="text-danger"> <%= message %> </li>
       <% end %>
     </ul>
-<% end %>
+    <% end %>
 
-<div class='form-group'>
-	<%= f.label :username, "Username*" %>
-	<%= f.text_field :username, class: 'form-control' %>
-</div>
 
-<div class='form-group'>
-	<%= f.label :email, "Email*" %>
-	<%= f.text_field :email, class: 'form-control' %>
-</div>
 
-<div class='form-group'>
-	<%= f.label :password, "Password*" %>
-	<%= f.password_field :password, class: 'form-control'%>
-</div>
+ <div class="col-lg-4 well" id='edititems'>
+      <h3>Personal Information</h3>
+      <div class='form-group'>
+       <%= f.label :firstname, "First Name" %>
+       <%= f.text_field :firstname, class: 'form-control' %>
+     </div>
+     <div class='form-group'>
+       <%= f.label :lastname, "Last Name" %>
+       <%= f.text_field :lastname, class: 'form-control' %>
+     </div>
 
-<div class='form-group'>
-	<%= f.label :password_confirmation, "Confirmation*" %>
-	<%= f.password_field :password_confirmation, class: 'form-control' %>
-</div>
+     <div class='form-group'>
+       <%= f.label :hometown, "Hometown" %>
+       <%= f.text_field :hometown, class: 'form-control' %>
+     </div>
+
+     <div class='form-group'>
+      <% rellist = ['Single', 'In a relationship', 'Engaged', 'Married', "It's complicated", "Open relationship"] %>
+      <%= f.label :relationshipstatus, "Relationship Status" %>
+      <%= f.select :relationshipstatus, rellist, {}, class: 'form-control'%>
+    </div>
+
+    <div class='form-group'>
+    	<%= f.label :aboutme, "About Me" %>
+      <%= f.text_area :aboutme, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+    	<%= f.label :age, "Age*" %>
+      <%= f.select :age, 17..25, {}, class: 'form-control' %>
+    </div>  
+
+  </div class="col-lg-4"> <!-- End Personal Information -->
+
+    <div class="col-lg-4 well">
+      <h3>Account Information</h3>
+      <div class='form-group'>
+        <%= f.label :username, "Username*" %>
+        <%= f.text_field :username, class: 'form-control' %>
+      </div>
+
+      <% if !@user.provider? %>
+      <div class='form-group'>
+        <%= f.label :password, "Password*" %>
+        <%= f.password_field :password, class: 'form-control'%>
+      </div>
+
+      <div class='form-group'>
+        <%= f.label :password_confirmation, "Confirmation*" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      <% end %>
+      
+      <div class = 'form-group'>
+               <% if @user.pictureurl==nil %>
+                <%= image_tag("http://imgur.com/1qXcMaY.jpg", class: 'profilePicture', height: "80", align: 'right')%>
+                <% else %>
+                <%= image_tag(@user.pictureurl, class: 'profilePicture', height: "80", align: 'right') %>              
+                <%end%>
+        <%= f.label :upload, "Upload file" %>
+        <%= f.file_field :upload, class: 'form-control' %> 
+      </div>
+      
+      <div class='form-group'>
+        <%= f.label :email, "Email*" %>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div>
+    </div> <!-- End Account Information -->
+
+
+  <div class="col-lg-4 well">
+    <h3>Education Information</h3>  
+    
+    <div class='form-group'>
+      <%= f.label :major, "Major*" %>
+      <%= f.text_field :major, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <%= f.label :year, "Class of*:" %>
+      <%= f.select :year, [2018,2017,2016,2015],{}, class: 'form-control' %>
+    </div>
+
+    <div class = 'form-group'>
+      <%= f.label :floor_id, "Floor" %>
+      <%= select_tag :dorm_id, options_from_collection_for_select(Dorm.all, "id", "name"), :prompt => "Select your dorm!", "class" => "form-control"%>
+      <%= select_tag :floor_id, options_from_collection_for_select([], "id", "name"),
+      "data-option-dependent" => true,
+      "data-option-observed" => "dorm_id",
+      "data-option-url" => "/dorms/:dorm_id:/floors.json",
+      "data-option-key-method" => :id,
+      "data-option-value-method" => :name,
+      "name" => "user[floor_id]", 
+      "id" => "user_floor_id",
+       "class" => "form-control"%>
+    </div>
+  </div> <!-- End Educational Information -->
+</div> 
+

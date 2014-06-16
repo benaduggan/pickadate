@@ -5,6 +5,13 @@
 <%= will_paginate @users %>
 
 <table class="users">
+  <thead>
+    <th></th>
+    <th>Name</th>
+    <th>Floor</th>
+    <th>Major</th>
+    <th>Class Of</th>
+  </thead>
   <% @users.each do |user| %>
     <tr class='userRow'>
 
@@ -23,6 +30,12 @@
         | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure you want to delete #{user.username}?" } %>
         <% end %>
       </td>
+      
+      <td><%=user.floor.name%></td>
+      
+      <td><%=user.major%></td>
+      <td><%=user.year%></td>
+      
     </tr>
     <% end %>
 </table>

@@ -17,6 +17,16 @@ class UsersController < ApplicationController
     if @user.save then
       sign_in(@user)
       flash[:success] = "You succesfully created an account!"
+      
+      
+      if !user_params[:floor_id].nil?
+        puts update_params[:floor_id]
+        @floor = Floor.find_by_id(update_params[:floor_id])
+        @floor.user_id = @user.id
+        @user.save
+        @floor.save
+      end
+      
       redirect_to edit_user_path(@user)
     else
       render 'new'
@@ -29,11 +39,21 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @floors = Floor.all
   end
   
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(update_params) then
+      
+      if !update_params[:floor_id].nil?
+        puts update_params[:floor_id]
+        @floor = Floor.find_by_id(update_params[:floor_id])
+        @floor.user_id = @user.id
+        @user.save
+        @floor.save
+      end
+      
       flash[:success] = "Successfully updated!"
       redirect_to @user
     else
@@ -56,11 +76,11 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :filename)
+      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :floor_id)
     end
     
     def update_params
-      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :filename)
+      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :floor_id)
     end
     
     def admin_user

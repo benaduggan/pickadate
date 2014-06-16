@@ -1,7 +1,7 @@
 class PickadatesController < ApplicationController
 
   def index
-    @pickadates = Pickadate.all
+    @pickadates = Pickadate.all.sort_by &:time
   end
   
   def new
@@ -10,7 +10,8 @@ class PickadatesController < ApplicationController
   
   def create
     @date = Pickadate.new(date_params)
-    @date.owner = (@current_user ||= User.find(session[:user_id]) if session[:user_id]).id
+    @date.owner = current_user
+    @date.floor = current_user.floor
     if @date.save then
       flash[:success] = "You succesfully created a date!"
       redirect_to pickadate_path(@date)
@@ -30,7 +31,10 @@ class PickadatesController < ApplicationController
   
   def update
     @date = Pickadate.find(params[:id])
-    if @date.update_attributes(update_params) then
+    @owner = User.find_by(@date.owner)
+    x = update_params
+    x[:floor] = @owner.floor
+    if @date.update_attributes(x) then
       flash[:success] = "Successfully updated!"
       redirect_to @date
     else
@@ -52,11 +56,11 @@ class PickadatesController < ApplicationController
 
  private
     def date_params
-      params.require(:pickadate).permit(:title, :time, :description, :rating, :rsvp_status, :floor, :location )
+      params.require(:pickadate).permit(:title, :time, :description, :rating, :rsvp_status, :location )
     end  
    
     def update_params
-      params.require(:pickadate).permit(:title, :time, :description, :rating, :rsvp_status, :floor, :location )
+      params.require(:pickadate).permit(:title, :time, :description, :rating, :rsvp_status, :location )
     end 
    
 end

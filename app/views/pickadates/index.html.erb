@@ -1,21 +1,41 @@
 <% @title = "All Dates" %>
 
 <h1>All Dates</h1>
+<h3>I want to list all upcoming dates sorted by soonest date</h3>
 
 
-
-<ul class="dates">
+<table class="users">
+  <thead>
+    <th></th>
+    <th>Title</th>
+    <th>Floor</th>
+    <th>Location</th>
+    <th>Time</th>
+  </thead>
   <% @pickadates.each do |date| %>
-    <li>
+    <tr class='userRow'>
+      <td width='80px'>
+        Picture Placeholder
+      </td>
+      
+      <td><%= link_to date.title, date %></td>
+      
+      <td><%=date.floor.name%> <%=date.floor.dorm.name%></td>
+      <td><%=date.location%></td>
+      <td><%=date.time.strftime("%B %e at %l:%M%p") %></td>
+      
       <a href=<%= user_path(date) %></a>
-      <%= link_to date.title, date %> <% if current_user.admin? %> | 
-      <%= link_to "Delete", pickadate_path(date), method: :delete, data: { confirm: "Are you sure you want to delete #{date.title}?" } %><% end %>
-    </li>
   <% end %>
-</ul>
+</table>
+
+
+      
+
+      
+
+      
+
 
 <% if current_user.pa? %>
-
-<%= button_to "Create a Date", new_pickadate_path, :class => "btn btn-primary", :method => :get %>
-
+<div class='buttonrow'><%= button_to "Create a Date", new_pickadate_path, :class => "btn btn-primary buttonrow", :method => :get %></div>
 <% end %>
