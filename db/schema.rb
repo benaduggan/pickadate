@@ -14,62 +14,73 @@
 ActiveRecord::Schema.define(version: 20140615172844) do
 
   create_table "dorms", force: true do |t|
-    t.string   "name"
+    t.string   "name",       default: "Unknown"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "floor_id"
   end
 
   create_table "floors", force: true do |t|
-    t.string   "name"
-    t.string   "gender"
+    t.integer  "dorm_id"
+    t.string   "name",       default: "Unknown"
+    t.string   "gender",     default: "Male"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "dorm_id"
-    t.integer  "pickadate_id"
-    t.integer  "user_id"
   end
+
+  add_index "floors", ["dorm_id"], name: "index_floors_on_dorm_id"
 
   create_table "pickadates", force: true do |t|
-    t.string   "title"
-    t.string   "location"
-    t.datetime "time"
-    t.string   "description"
-    t.integer  "rating"
-    t.string   "rsvp_status"
+    t.integer  "floor_id"
+    t.string   "title",       default: "You'll really want to change this..."
+    t.string   "location",    default: "Maybe in your dorm's lobby?"
+    t.datetime "time",        default: '2014-07-18 00:12:09'
+    t.string   "description", default: "You might describe what the date will be here..."
+    t.integer  "creator"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "floor_id"
-    t.integer  "owner"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email"
+  add_index "pickadates", ["floor_id"], name: "index_pickadates_on_floor_id"
+
+  create_table "user_pickadates", force: true do |t|
+    t.string   "rsvpstatus"
+    t.integer  "user_id"
+    t.integer  "pickadate_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  add_index "user_pickadates", ["pickadate_id"], name: "index_user_pickadates_on_pickadate_id"
+  add_index "user_pickadates", ["user_id"], name: "index_user_pickadates_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.integer  "floor_id"
+    t.string   "email"
+    t.string   "username"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "major",              default: "unspecified"
+    t.string   "aboutme",            default: "Apparently I was too lazy to change this myself"
+    t.string   "hometown",           default: "Upland, Indiana"
+    t.string   "relationshipstatus", default: "Unspecified"
+    t.string   "pictureurl",         default: "http://imgur.com/1qXcMaY.jpg"
+    t.string   "firstname",          default: "John"
+    t.string   "lastname",           default: "Smith"
+    t.integer  "age",                default: 18
+    t.integer  "year",               default: 2018
     t.boolean  "admin",              default: false
-    t.string   "username"
-    t.string   "firstname"
-    t.string   "lastname"
+    t.boolean  "first",              default: true
+    t.boolean  "pa",                 default: false
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.integer  "age"
-    t.integer  "year"
-    t.string   "major"
-    t.integer  "floor_id"
-    t.string   "aboutme"
-    t.string   "hometown"
-    t.string   "relationshipstatus"
-    t.boolean  "first",              default: true
-    t.boolean  "pa",                 default: false
-    t.string   "pictureurl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["floor_id"], name: "index_users_on_floor_id"
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 

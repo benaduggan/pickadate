@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'rails-erd'
+
 gem 'validates_timeliness', github: 'softace/validates_timeliness', branch:  'support_for_rails4'
 
 gem 'omniauth-facebook'

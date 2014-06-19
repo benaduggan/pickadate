@@ -3,7 +3,7 @@
 <h1>All Dates</h1>
 <h3>I want to list all upcoming dates sorted by soonest date</h3>
 
-
+<% if @pickadates.length>0 %>
 <table class="users">
   <thead>
     <th></th>
@@ -27,6 +27,7 @@
       <a href=<%= user_path(date) %></a>
   <% end %>
 </table>
+<% end %>
 
 
       

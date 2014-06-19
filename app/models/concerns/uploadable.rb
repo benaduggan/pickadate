@@ -8,12 +8,14 @@ module Uploadable
   
   def delete_file
     if !self.pictureurl.nil?
-      File.delete(self.pictureurl)
+      if File.exists?('~/pickadate/app/assets/images/' + self.pictureurl)
+        File.delete('~/pickadate/app/assets/images/' + self.pictureurl)
+      end
     end
   end
   
   def check_location
-    if self.pictureurl.nil? && File.exists?('app/assets/imagaes/' + self.pictureurl.to_s) #if nil and if it already exists, then it is invalid
+    if self.pictureurl.nil? && File.exists?('app/assets/images/' + self.pictureurl.to_s) #if nil and if it already exists, then it is invalid
       errors.add(:pictureurl, "is invalid" + self.pictureurl.to_s)
     end
   end 

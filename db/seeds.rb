@@ -9,11 +9,7 @@
 def create_Dorm_and_Floor_entries(dormName,floorArray)
   dorm = Dorm.create(:name => dormName)
   floorArray.each do |floor|
-    x = Floor.create({:name => floor[:name], :gender => floor[:gender]})
-    x.dorm_id = dorm.id
-    x.dorm.floor_id = x.id
-    x.save
-    dorm.save
+    dorm.floors.create({:name => floor[:name], :gender => floor[:gender]})
   end
 end
 

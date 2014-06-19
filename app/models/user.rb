@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-    has_many :pickadates
-    has_one :floor
+    has_many :user_pickadates
+    has_many :pickadates, through: :user_pickadates
+  
+    belongs_to :floor
   
     before_save { self.email = email.downcase }
     before_create :create_remember_token

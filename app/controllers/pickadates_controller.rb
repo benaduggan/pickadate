@@ -10,8 +10,11 @@ class PickadatesController < ApplicationController
   
   def create
     @date = Pickadate.new(date_params)
-    @date.owner = current_user
+    @date.creator = current_user.id
     @date.floor = current_user.floor
+    
+    #associate all of the floor of the owner of the pickadate to the pickadate?
+    
     if @date.save then
       flash[:success] = "You succesfully created a date!"
       redirect_to pickadate_path(@date)
@@ -22,7 +25,7 @@ class PickadatesController < ApplicationController
   
   def show
     @date = Pickadate.find(params[:id])
-    @owner = User.find_by(@date.owner)
+    @owner = User.find_by(@date.creator)
   end
   
   def edit
@@ -31,10 +34,7 @@ class PickadatesController < ApplicationController
   
   def update
     @date = Pickadate.find(params[:id])
-    @owner = User.find_by(@date.owner)
-    x = update_params
-    x[:floor] = @owner.floor
-    if @date.update_attributes(x) then
+    if @date.update_attributes(update_params) then
       flash[:success] = "Successfully updated!"
       redirect_to @date
     else
@@ -56,11 +56,11 @@ class PickadatesController < ApplicationController
 
  private
     def date_params
-      params.require(:pickadate).permit(:title, :time, :description, :rating, :rsvp_status, :location )
+      params.require(:pickadate).permit(:title, :time, :description, :location )
     end  
    
     def update_params
-      params.require(:pickadate).permit(:title, :time, :description, :rating, :rsvp_status, :location )
+      params.require(:pickadate).permit(:title, :time, :description, :location )
     end 
    
 end
