@@ -29,7 +29,6 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
-    @floors = Floor.all
   end
   
   def update

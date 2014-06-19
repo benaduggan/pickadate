@@ -13,7 +13,9 @@ class PickadatesController < ApplicationController
     @date.creator = current_user.id
     @date.floor = current_user.floor
     
-    #associate all of the floor of the owner of the pickadate to the pickadate?
+    #associate all of the floor of the creator of the pickadate to the pickadate?
+    #@date.users = @date.floor.users.all #I haven't tested this at all, just thought it might work...
+    
     
     if @date.save then
       flash[:success] = "You succesfully created a date!"
@@ -25,7 +27,7 @@ class PickadatesController < ApplicationController
   
   def show
     @date = Pickadate.find(params[:id])
-    @owner = User.find_by(@date.creator)
+    @creator = User.find_by(@date.creator)
   end
   
   def edit

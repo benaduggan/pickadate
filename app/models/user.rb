@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
     has_many :user_pickadates
     has_many :pickadates, through: :user_pickadates
-  
     belongs_to :floor
   
     before_save { self.email = email.downcase }
@@ -27,26 +26,23 @@ class User < ActiveRecord::Base
         where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
           user.provider = auth.provider
           user.uid = auth.uid
-          user.username = auth.info.name unless user.username?
+          user.username = auth.info.name
           
           user.password = 'helllooo'
           user.password_confirmation = 'helllooo'
           
-          user.firstname = auth.info.first_name unless user.firstname?
-          user.lastname = auth.info.last_name unless user.lastname?
+          user.firstname = auth.info.first_name
+          user.lastname = auth.info.last_name
           
-          user.email = 'temp@temp.com' #for validation you have to have an email... but sometimes an email doesn't come over :(
-          if auth.info.email
-            user.email = auth.info.email unless user.email!='temp@temp.com'
-          end
+          user.email = auth.info.email unless auth.info.email=''
           
+          user.hometown = auth.info.location
+          user.relationshipstatus = auth.extra.raw_info.relationship_status
           
-          user.hometown = auth.info.location unless user.hometown?         
-          user.relationshipstatus = auth["extra"]["raw_info"]["relationship_status"] unless user.relationshipstatus?
-          user.aboutme = auth['extra']['raw_info']['birthday']
+          user.aboutme = auth.extra.raw_info.bio unless auth.extra.raw_info.bio=''
           
           
-          bday = auth['extra']['raw_info']['birthday']
+          bday = auth.extra.raw_info.birthday
           day = bday.slice(0,2)
           month = bday.slice(3,2)
           year = bday.slice(6,4)
@@ -55,7 +51,6 @@ class User < ActiveRecord::Base
           user.age = (now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)).to_i #unless user.age?        
 
           
-          user.aboutme = 'Tell us about yourself!'
           user.pictureurl = (auth['info']['image'].to_s + "?type=large")
           
           

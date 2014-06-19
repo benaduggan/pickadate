@@ -7,13 +7,12 @@ class ApplicationController < ActionController::Base
     dorm = Dorm.find(params[:dorm_id])
     respond_to do |format|
     format.json { render :json => dorm.floors }
+    end
   end
-end
   
   helper :users
   
   before_filter :random_user
-  
   def random_user
     @random_user = User.all[rand(0..User.all.length-1)] unless User.all.length == 0
   end
@@ -25,7 +24,5 @@ end
   helper_method :current_user
   
   include SessionsHelper
-  
-
   
 end
