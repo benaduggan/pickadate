@@ -3,7 +3,7 @@
 <div class="row">
 
     <div class="col-xs-12">
-          <div class="jumbotron">
+          <div class="jumbotron" id="userShowJumbotron">
             <h1><%= @user.firstname + ' ' + @user.lastname %> <% if @user.pa? %>| PA <%end%> </h1>
             <p>
                 <% if @user.pictureurl==nil %>
@@ -15,7 +15,7 @@
                 <%= @user.aboutme %>
             </p>
           </div>
-          <div class="row">
+          <div class="row" id='showitems'>
             <div class="col-6 col-sm-6 col-lg-4 panel panel-primary">
               <h2 class="panel panel-heading">Residence</h2>
               <p class="well well-sm"><%= @user.floor.name %> <%= @user.floor.dorm.name %></p>
@@ -40,9 +40,6 @@
               <h2 class="panel panel-heading">Relationship Status</h2>
               <p class="well well-sm"><%= @user.relationshipstatus %></p>
             </div><!--/span-->
-            
-
-
           </div><!--/row-->
         </div>
 </div>

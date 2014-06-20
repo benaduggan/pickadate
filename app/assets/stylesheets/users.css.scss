@@ -1,6 +1,26 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#showitems > div > h2{
+  margin:0px;
+}
+
+#showitems > div > p {
+  width:100%;
+}
+
+#showitems > div{
+  margin: 0 auto;
+  padding-left:5px;
+  padding-right:5px;
+  height:132px;
+  border:none;
+}
+
+#usereditformwells{
+ width:30.7%;
+ margin: 0 15px 0 15px;
+}
 
 .users{ //this is for the users index table and the pickadate index table
   border-collapse:separate;
@@ -8,26 +28,32 @@
   margin-bottom:30px;
 }
 
+#userShowJumbotron{
+  padding-bottom:10px;
+  padding-top:10px;
+}
 
+#userShowJumbotron p{
+  margin-bottom:0;
+  display:table;  
+}
+
+
+#userShowJumbotron p{
+  margin-bottom:10px;
+  margin-top:0;
+}
 
 body > div.container > table > tbody > tr > td {
   width:80px;
 }
 
-body > div.container > div.row > div > div.row > div > h2{
-  margin-top:0;
-}
-
-body > div.container > div.row > div > div.row > div{
+#edititems > div{
   padding:0px;
   margin-left:5px;
   margin-right:5px;
   width:370px;
   height:132px;
-}
-
-h3{
-  text-align:center;
 }
 
 .profilePicture{
@@ -38,26 +64,9 @@ h3{
   margin-right:10px;
 }
 
-
-body > div.container > div.row > div > div.row {
-  margin: 0 auto;
-}
-
-
-body > div.container > div.row > div > div.row > div > p.well.well-sm{
-  text-align:center;
-  display:table;
-  margin: auto auto 25px auto;
-}
-
-#edit_user_1 > div{
-  margin: 0 25px 25px 25px;
-  width: 340px;
-}
-
-body > div > div.row > input {
-  margin-top:25px;
-  width: 100%;
+#usereditsubmit{
+  width:auto;
+  margin-top:200px
 }
 
 #user_upload{

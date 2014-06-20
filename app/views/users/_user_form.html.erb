@@ -10,8 +10,7 @@
     <% end %>
 
 
-
- <div class="col-lg-4 well" id='edititems'>
+    <div class="col-lg-4 well" id="usereditformwells">
       <h3>Personal Information</h3>
       <div class='form-group'>
        <%= f.label :firstname, "First Name" %>
@@ -28,7 +27,7 @@
      </div>
 
      <div class='form-group'>
-      <% rellist = ['Single', 'In a relationship', 'Engaged', 'Married', "It's complicated", "Open relationship"] %>
+       <% rellist = ['Unknown','Single', 'In a relationship', 'Engaged', 'Married', "It's complicated", "Open relationship"] %>
       <%= f.label :relationshipstatus, "Relationship Status" %>
       <%= f.select :relationshipstatus, rellist, {}, class: 'form-control'%>
     </div>
@@ -43,9 +42,10 @@
       <%= f.select :age, 17..25, {}, class: 'form-control' %>
     </div>  
 
-  </div class="col-lg-4"> <!-- End Personal Information -->
+  </div> <!-- End Personal Information -->
 
-    <div class="col-lg-4 well">
+  
+    <div class="col-lg-4 well" id="usereditformwells">
       <h3>Account Information</h3>
       <div class='form-group'>
         <%= f.label :username, "Username*" %>
@@ -81,7 +81,7 @@
     </div> <!-- End Account Information -->
 
 
-  <div class="col-lg-4 well">
+  <div class="col-lg-4 well" id="usereditformwells">
     <h3>Education Information</h3>  
     
     <div class='form-group'>
@@ -108,5 +108,3 @@
        "class" => "form-control"%>
     </div>
   </div> <!-- End Educational Information -->
-</div> 
-
