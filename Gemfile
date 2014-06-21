@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'gon' #allows you to pass data to javascript through controllers
+
 gem 'rails-erd'
 
 gem 'validates_timeliness', github: 'softace/validates_timeliness', branch:  'support_for_rails4'

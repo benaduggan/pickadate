@@ -1,5 +1,20 @@
 class PickadatesController < ApplicationController
+  respond_to :html, :js
+  
+  
+  def rsvpstatus
+    @user_pickadate = current_user.user_pickadates.where(pickadate_id: params[:id]).first
+    puts @user_pickadate.rsvpstatus
+    puts params
+    @user_pickadate.rsvpstatus = params[:rsvpstatus]
+    @user_pickadate.save
 
+    respond_to do |format|
+      format.js { render :json => "Success!" }
+    end
+  end
+    
+  
   def index
     @pickadates = Pickadate.all.sort_by &:time
   end
@@ -14,7 +29,7 @@ class PickadatesController < ApplicationController
     @date.floor = current_user.floor
     
     #associate all of the floor of the creator of the pickadate to the pickadate?
-    #@date.users = @date.floor.users.all #I haven't tested this at all, just thought it might work...
+    @date.users = @date.floor.users.all #I haven't tested this at all, just thought it might work...
     
     
     if @date.save then
@@ -27,6 +42,11 @@ class PickadatesController < ApplicationController
   
   def show
     @date = Pickadate.find(params[:id])
+    gon.date = @date
+    
+    if current_user.user_pickadates.where(pickadate_id: params[:id]).length == 1
+      gon.currentrsvpstatus = current_user.user_pickadates.where(pickadate_id: params[:id]).first.rsvpstatus
+    end
     @creator = User.find_by(@date.creator)
   end
   

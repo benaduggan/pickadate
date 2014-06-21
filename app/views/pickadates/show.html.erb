@@ -19,10 +19,13 @@
 
                <%= @date.description %>
               
+              
               <% if current_user.floor == @date.floor && current_user !=  @creator %>
-              <button class="btn btn-primary pull-right">Attending</button>
-              <button class="btn btn-primary pull-right">Maybe</button>
-              <button class="btn btn-primary pull-right">Eh... No.</button>
+              <div class="pull-right">
+              <button class="btn btn-default" id="yes" >Attending</button>
+              <button class="btn btn-default" id="maybe" >Maybe</button>
+              <button class="btn btn-default" id="no">Eh... No.</button>
+              </div>
               <%end%>
               
             </p>
@@ -47,7 +50,7 @@
       
            <div class="col-lg-4 col-lg-offset-1 panel panel-primary">
               <h2 class="panel panel-heading">Users</h2>
-              <p class="well well-sm">Place Holder for users<% @date.users %></p>
+             <p class="well well-sm">Number of people on the date: <%= @date.users.length%></p>
            </div><!--/span-->
               
           </div><!--/row-->

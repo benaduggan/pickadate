@@ -16,7 +16,10 @@ UnknownBusiness::Application.routes.draw do
   get 'about', to: "static_pages#about", as: "about"
   get 'contact', to: "static_pages#contact", as: 'contact'
   
-  resources :pickadates
+  resources :pickadates do
+    post :rsvpstatus, :on => :collection
+  end
+  
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   
