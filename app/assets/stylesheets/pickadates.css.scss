@@ -19,18 +19,46 @@ button{
   margin:5px;
 }
 
-body > div.container > div.row > div > div.col-lg-7 > div > div > h2{
+body > div.container > div.row > div > div.col-lg-8 > div > div > div > h2{
   margin-bottom:0px;
 }
 
-body > div.container > div.row > div > div.col-lg-7 > div > div{
-  padding:0px;
+
+#pickadateusers{
+  margin: 0 auto;
+  height:132px;
+  border: 7px solid white; 
+  text-align:center;
+  box-shadow: 0 0px 0px #fff;
+}
+
+#pickadateusers > h2{
+  margin-bottom:0px;
+}
+
+#pickadateusers > h4{
+    margin-bottom:0px;
+    margin-top:0px;
+}
+
+#pickadateusers > table{
+  width:100%;
+  text-align:center;
+}
+
+
+
+#pickadateinfo > div > div > div{
   height:132px;
   margin: 0 auto;
-  padding-left:5px;
-  padding-right:5px;
   height:132px;
-  border:none;
+  border: 7px solid white; 
+  text-align:center;
+	box-shadow: 0 0px 0px #fff;
+}
+
+#pickadateinfo > div > div > div > p{
+  margin-bottom:0;
 }
 
 h3{
@@ -45,6 +73,10 @@ h3{
   margin-right:10px;
 }
 
+#pickadateusers > table > tbody > tr > td{
+  padding-left:15%;
+  text-align:left;
+}
 
 body > div.container > div.row > div > div.row {
   margin: 0 auto;
@@ -62,11 +94,27 @@ body > div.container > div.row > div > div.row > div > p.well.well-sm{
   width: 340px;
 }
 
-body > div > div.row > input {
-  margin-top:25px;
-  width: 100%;
+#row > form > div{
+    text-align:center;
 }
 
-#user_upload{
-  width:200px;
+pickadateeditsubmit{
+  width:100%;
+  text-align:center;
+  margin-top:200px
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

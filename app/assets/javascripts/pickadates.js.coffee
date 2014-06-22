@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
-  $("#" + gon.currentrsvpstatus).attr('class', 'btn btn-primary') if gon.currentrsvpstatus
-
+    $("#" + gon.currentrsvpstatus).attr('class', 'btn btn-primary') if gon? and gon.rsvpstatus? 
+      
 $(document).ready(ready)
 $(document).on('page:load', ready)
 

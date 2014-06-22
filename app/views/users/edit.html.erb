@@ -2,9 +2,11 @@
 
 <h1> Edit Your Profile </h1>
 
-<div class='row'>
     	<%= form_for(@user) do |f| %>
-        <%= render "user_form", f: f%>
-      <%= f.submit "Update Profile", class: "btn btn-primary", :id => "usereditsubmit" %>
+        <div class='row'>
+          <%= render "user_form", f: f%>
+        </div>
+        <div class='row' id="editsubmit">
+          <%= f.submit "Update Profile", class: "btn btn-primary" %>
+        </div>
       <% end %>
-</div>

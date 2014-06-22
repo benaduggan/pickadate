@@ -20,7 +20,7 @@
                <%= @date.description %>
               
               
-              <% if current_user.floor == @date.floor && current_user !=  @creator %>
+              <% if current_user.floor == @date.floor %>
               <div class="pull-right">
               <button class="btn btn-default" id="yes" >Attending</button>
               <button class="btn btn-default" id="maybe" >Maybe</button>
@@ -31,8 +31,9 @@
             </p>
           </div>
 
-          <div class="col-lg-7">
+          <div class="col-lg-8" id="pickadateinfo">
             <div class="row">
+                <div class='row'>
                     <div class="col-6 col-sm-6 col-lg-6 panel panel-primary">
                       <h2 class="panel panel-heading">Floor</h2>
                       <p class="well well-sm"><%= @date.floor.name %></p>
@@ -41,16 +42,28 @@
                       <h2 class="panel panel-heading">Location</h2>
                       <p class="well well-sm"><%= @date.location %></p>
                     </div><!--/span-->
+                 </div>
+                 <div class="row">
                     <div class="col-6 col-sm-6 col-lg-6 panel panel-primary">
                       <h2 class="panel panel-heading">Time</h2>
                       <p class="well well-sm"><%= @date.time.strftime("%B %e at %l:%M%p") %></p>
                     </div><!--/span-->
+                </div>
                </div>
             </div>
       
-           <div class="col-lg-4 col-lg-offset-1 panel panel-primary">
+           <div class="col-lg-4 panel panel-primary" id="pickadateusers">
               <h2 class="panel panel-heading">Users</h2>
-             <p class="well well-sm">Number of people on the date: <%= @date.users.length%></p>
+             <h4 class="well well-sm">Number of People Invited: <%= @date.users.length%></h4>
+             <table class="well well-sm">
+               <% @date.users.all.each do |user| %>
+               <tr>
+                 <td><%= link_to user.username, user %></td>
+                 <td><%= user.user_pickadates.where(pickadate_id: params[:id]).first.rsvpstatus %></td>
+               </tr>
+               <%end%>
+             </table>
+             
            </div><!--/span-->
               
           </div><!--/row-->

@@ -3,7 +3,7 @@
 <h1>All Dates</h1>
 <h3>The dates are listed by how soon they are upcoming</h3>
 
-<% if @pickadates.length>0 %>
+<% if !@dates.nil? %>
 <table class="users">
   <thead>
     <th></th>
@@ -12,7 +12,7 @@
     <th>Location</th>
     <th>Time</th>
   </thead>
-  <% @pickadates.each do |date| %>
+  <% @dates.each do |date| %>
     <tr class='userRow'>
       <td width='80px'>
         Picture Placeholder
@@ -27,16 +27,16 @@
       <a href=<%= user_path(date) %></a>
   <% end %>
 </table>
-<% end %>
-
-
-      
-
-      
-
-      
+<% end %>   
 
 
 <% if current_user.pa? %>
-<div class='buttonrow'><%= button_to "Create a Date", new_pickadate_path, :class => "btn btn-primary buttonrow", :method => :get %></div>
+<div id='row'><%= button_to "Create a Date", new_pickadate_path, :class => "btn btn-primary", :method => :get, :id => "pickadateeditsubmit" %></div>
 <% end %>
+
+
+
+
+
+
+

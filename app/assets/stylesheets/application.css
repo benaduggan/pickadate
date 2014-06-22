@@ -13,9 +13,3 @@
  *= require rails_bootstrap_forms
 */
 
-@media only screen and (min-width : 768px) {
-    /* Make Navigation Toggle on Desktop Hover */
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
-}

@@ -16,7 +16,7 @@ class PickadatesController < ApplicationController
     
   
   def index
-    @pickadates = Pickadate.all.sort_by &:time
+    @dates = Pickadate.all.sort_by &:time
   end
   
   def new
