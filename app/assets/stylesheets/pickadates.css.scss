@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+pickadateeditformwells{
+  border: 7px solid white;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;  
+}
+
+
 .jumbotron{
    text-align:center;
   
@@ -61,9 +69,6 @@ body > div.container > div.row > div > div.col-lg-8 > div > div > div > h2{
   margin-bottom:0;
 }
 
-h3{
-  text-align:center;
-}
 
 .profilePicture{
   border:1px solid #fff;
@@ -73,30 +78,15 @@ h3{
   margin-right:10px;
 }
 
+#pickadateusers > table > tbody > tr > th {
+  padding-left:10%;
+}
+
 #pickadateusers > table > tbody > tr > td{
   padding-left:15%;
   text-align:left;
 }
 
-body > div.container > div.row > div > div.row {
-  margin: 0 auto;
-}
-
-
-body > div.container > div.row > div > div.row > div > p.well.well-sm{
-  text-align:center;
-  display:table;
-  margin: auto auto 25px auto;
-}
-
-#edit_user_1 > div{
-  margin: 0 25px 25px 25px;
-  width: 340px;
-}
-
-#row > form > div{
-    text-align:center;
-}
 
 pickadateeditsubmit{
   width:100%;

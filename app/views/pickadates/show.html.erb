@@ -56,6 +56,10 @@
               <h2 class="panel panel-heading">Users</h2>
              <h4 class="well well-sm">Number of People Invited: <%= @date.users.length%></h4>
              <table class="well well-sm">
+               <thead>
+                   <th>Name</th>
+                   <th>Response</th>
+               </thead>
                <% @date.users.all.each do |user| %>
                <tr>
                  <td><%= link_to user.username, user %></td>

@@ -23,16 +23,17 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in!<b class="caret"></b></a>
           <ul class="dropdown-menu">
                 <%= form_for(:session, url: sessions_path) do |f| %>
-                <li class='form-group'>
-                  <% f.label :email %>
-                  <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
-                </li>
+                <div id="notsignedinform">
+                    <li class='form-group'>
+                      <% f.label :email %>
+                      <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+                    </li>
 
-                <li class='form-group'>
-                  <% f.label :password %>
-                  <%= f.password_field :password, class: "form-control", placeholder: 'Password' %>
-                </li>
-
+                    <li class='form-group'>
+                      <% f.label :password %>
+                      <%= f.password_field :password, class: "form-control", placeholder: 'Password' %>
+                    </li>
+                </div>
                   <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
                 <% end %>
           </ul>
@@ -56,6 +57,7 @@
       
       <ul class="nav navbar-nav navbar-right">
             <% if signed_in? %>
+              <li><%= link_to "My Pick-A-Dates", "#" %></li> 
               <li><%= link_to "Profile", current_user %></li> 
             <% end %>
         <li class="dropdown">

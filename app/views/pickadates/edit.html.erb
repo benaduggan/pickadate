@@ -2,22 +2,41 @@
 
 <h1> Edit <%= @date.title %></h1>
 
-<% if @date.errors.any? %>
-    <div class="alert alert-danger"> 
-    <p>The form contains <%= pluralize(@date.errors.count, "error") %>.</p>
-    </div>
-    <ul>
-      <% @date.errors.full_messages.each do |message| %>
-      <li class="text-danger"> <%= message %> </li>
-      <% end %>
-    </ul>
-<% end %>
-
 <%= form_for @date do |f| %>
 
-<%= render "pickadate_form", f: f%>
+        <div class='row'>
+          <%= render "pickadate_form", f: f%>
+        </div>
 
-
-<%= f.submit "Update Profile", class: "btn btn-primary" %>
+        <div class='row' id="editsubmit">
+          <%= f.submit "Update Date", class: "btn btn-primary" %>
+        </div>
 <% end %>
+
+
+<div class="container">
+<div class="container">
+    <div class="col-sm-6" style="height:130px;">
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker10'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon"><span class="fa fa-calendar">
+                      </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker10').datetimepicker({
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            });
+        });
+    </script>
+</div>
 

@@ -9,22 +9,24 @@
     </ul>
 <% end %>
 
-<div class='form-group'>
-  <%= f.label :title, "Title*" %>
-  <%= f.text_field :title, class: 'form-control' %>
-</div>
+<div class="col-lg-4 well" id="pickadateeditformwells">
+    <div class='form-group'>
+      <%= f.label :title, "Title*" %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
 
-<div class='form-group'>
-	<%= f.label :location, "Location*" %>
-	<%= f.text_field :location, class: 'form-control' %>
-</div>
+    <div class='form-group'>
+      <%= f.label :location, "Location*" %>
+      <%= f.text_field :location, class: 'form-control' %>
+    </div>
 
-<div class='form-group'>
-  <%= f.label :time, "Time of Event*" %>
-  <%= f.datetime_select :time, class: 'form-control'%>
-</div>
+    <div class='form-group' id="PickadateDatetimeSelect">
+      <%= f.label :time, "Time of Event*" %>
+      <%= f.datetime_select :time, class: 'form-control'%>
+    </div>
 
-<div class='form-group'>
-  <%= f.label :description, "Description*" %>
-  <%= f.text_field :description, class: 'form-control' %>
+    <div class='form-group'>
+      <%= f.label :description, "Description*" %>
+      <%= f.text_field :description, class: 'form-control' %>
+    </div>
 </div>
