@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
     #validates :password, length: { minimum: 6 }
     #validates :year, presence: true
     #validates :major, presence: true
+	 validates :floor_id, presence: true
+	
   
     include Uploadable
   
@@ -34,7 +36,7 @@ class User < ActiveRecord::Base
           user.firstname = auth.info.first_name
           user.lastname = auth.info.last_name
           
-          user.email = auth.info.email unless auth.info.email=''
+          user.email = auth.info.email unless auth.info.email==''
           
           user.hometown = auth.info.location
           user.relationshipstatus = auth.extra.raw_info.relationship_status

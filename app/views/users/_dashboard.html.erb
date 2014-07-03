@@ -1,0 +1,34 @@
+<div class="center hero-unit">
+  <h1>Welcome to your Pick-A-Date dashboard!</h1>
+  <h2>This is the central location for all of your pickadate needs!</h2>
+	
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Total Dates</h2>
+      <p id="circlething">2</p>
+    </div>
+    <div class="col-lg-4">
+      <h2>Your dates</h2>
+      <p id="circlething" >0</p>
+    </div>
+    <div class="col-lg-4">
+      <h2>Their dates</h2>
+      <p id="circlething">0</p>
+    </div>
+  </div>
+	
+</div>
+
+
+#Idea - the next 3 upcoming dates in the three placeholders below
+
+<div class="row" id='showitems'>
+
+  <% nextthreedates.each do |date| %>
+        <div class="col-lg-4 panel panel-primary">
+          <h2 class="panel panel-heading"><%= link_to date.title, date %></h2>
+          <p class="well well-sm"><%= date.description %> <%= link_to "View Details", date, class: "btn btn-primary" %></p>
+          
+        </div>
+<%end%>
+</div>

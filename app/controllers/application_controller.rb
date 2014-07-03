@@ -19,7 +19,16 @@ class ApplicationController < ActionController::Base
   
   before_filter :random_user
   def random_user
-    @random_user = User.all[rand(0..User.all.length-1)] unless User.all.length == 0
+    if signed_in?
+      if current_user.gender != nil
+        if current_user.gender == "Female"
+          @random_user = User.where(:gender => "Male")[rand(0..User.where(:gender => "Male").length-1)] unless User.where(:gender => "Male").length == 0
+        else
+          @random_user = User.where(:gender => "Female")[rand(0..User.where(:gender => "Female").length-1)] unless User.where(:gender => "Female").length == 0
+        end
+      end
+    end
+    return @random_user = User.first
   end
   
   private
@@ -27,6 +36,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   helper_method :current_user
+  
   
   include SessionsHelper
   

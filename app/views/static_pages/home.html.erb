@@ -48,31 +48,7 @@
       <a class="left carousel-control" href="#homeCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#homeCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
-
-
-<% else %>
-
-#idea - This should be a dashboard.. It could tell you your upcoming pickadates... how many you have been on... other...stats?
-<div class="center hero-unit">
-  <h1>Welcome <%=current_user.username%> to Taylor University Pickadates!</h1>
-
-  <h2>
-    This is the central location for all of your pickadate needs!
-  </h2>
-
-  <%= link_to "Check out some dates!", pickadates_path, class: "btn btn-large btn-primary" %>
-</div>
-
-
-#Idea - the next 3 upcoming dates in the three placeholders below
-
-<div class="row">
-<% nextthreedates.each do |date| %>
-        <div class="col-lg-4">
-          <h3><%= link_to date.title, date %></h3>
-          <p><%= date.description %></p>
-          <%= link_to "View Details", date, class: "btn btn-primary" %>
-        </div>
-  <%end%>
-</div>
-<% end %>
+<%end%>
+<% if signed_in? %>
+  <%= render 'users/dashboard' %>
+<%end%>

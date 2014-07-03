@@ -6,6 +6,20 @@ $grayMediumLight: #eaeaea;
 $grayLight: #afafaf;
 $grayDarker: #eaeaff;
 
+#bs-example-navbar-collapse-1 > ul > li > a:hover{ 
+	background-color:$grayLight;
+	color:white;
+}
+
+#bs-example-navbar-collapse-1 > ul > li > ul > li > a:hover{
+	background-color:$grayLight;
+	color:white;	
+}
+
+#row{
+  text-align:center;
+}
+
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -56,6 +70,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  text-align:center;
 }
 
 h1 {

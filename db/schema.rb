@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615172844) do
+ActiveRecord::Schema.define(version: 20140629164012) do
 
   create_table "dorms", force: true do |t|
     t.string   "name",       default: "Unknown"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140615172844) do
     t.integer  "creator"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "cost",        default: 0.0
   end
 
   add_index "pickadates", ["floor_id"], name: "index_pickadates_on_floor_id"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140615172844) do
   create_table "user_pickadates", force: true do |t|
     t.string   "rsvpstatus"
     t.integer  "user_id"
+    t.string   "user_type",    default: "invited"
     t.integer  "pickadate_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140615172844) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "gender",             default: "Male"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

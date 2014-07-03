@@ -8,5 +8,6 @@ class Pickadate < ActiveRecord::Base
   validates :location, presence: true
   validates_datetime :time, :on_or_after => lambda { Time.now.change(:usec =>0) }
   validates :description, presence: true
+  validates :cost, presence: true
 
 end

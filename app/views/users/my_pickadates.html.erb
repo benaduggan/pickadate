@@ -1,18 +1,23 @@
 <% @title = "All Dates" %>
 
-<h1>All Dates</h1>
-<h3>The dates are listed by how soon they are upcoming</h3>
+<h1>Your Dates</h1>
+<h3>These are the dates you are related to!</h3>
 
 <% if !@dates.nil? %>
-<table class="table table-hover">
+<table class="users">
   <thead>
+    <th></th>
     <th>Title</th>
     <th>Floor</th>
     <th>Location</th>
-    <th>Time</th>
+    <th>Starts on</th>
   </thead>
   <% @dates.each do |date| %>
-    <tr class='userRow'>      
+    <tr class='userRow'>
+      <td width='80px'>
+        Picture Placeholder
+      </td>
+      
       <td><%= link_to date.title, date %></td>
       
       <td><%=date.floor.name%> <%=date.floor.dorm.name%></td>
@@ -26,7 +31,7 @@
 
 
 <% if current_user.pa? %>
-<div class='row' id='row'><%= button_to "Create a Date", new_pickadate_path, :class => "btn btn-primary", :method => :get, :id => "pickadateeditsubmit" %></div>
+<div class="row" id='row'><%= button_to "Create a Date", new_pickadate_path, :class => "btn btn-primary", :method => :get, :id => "pickadateeditsubmit" %></div>
 <% end %>
 
 

@@ -21,6 +21,10 @@ UnknownBusiness::Application.routes.draw do
   end
   
   resources :users
+
+  get "my_pickadates", to: 'users#my_pickadates', as: "my_pickadates"
+  
+  
   resources :sessions, only: [:new, :create, :destroy]
   
   get 'signup', to: 'users#new', as: 'signup'

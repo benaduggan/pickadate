@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
+  
+  def my_pickadates    
+    @dates = current_user.pickadates
+  end
+  
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -56,11 +61,11 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :floor_id)
+      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :floor_id, :gender)
     end
     
     def update_params
-      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :floor_id)
+      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :floor_id, :gender)
     end
     
     def admin_user

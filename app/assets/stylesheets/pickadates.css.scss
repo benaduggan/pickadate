@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#circlething{
+  width: 30px;
+  height: 30px;
+  padding: 33px;
+  border-radius: 65px;
+  border: 2px solid #404040;
+  margin:0 auto;
+}
+
 pickadateeditformwells{
   border: 7px solid white;
   -webkit-border-radius: 30px;

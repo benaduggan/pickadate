@@ -78,11 +78,11 @@ class PickadatesController < ApplicationController
 
  private
     def date_params
-      params.require(:pickadate).permit(:title, :time, :description, :location )
+      params.require(:pickadate).permit(:title, :time, :description, :location, :cost )
     end  
    
     def update_params
-      params.require(:pickadate).permit(:title, :time, :description, :location )
+      params.require(:pickadate).permit(:title, :time, :description, :location, :cost )
     end 
    
 end

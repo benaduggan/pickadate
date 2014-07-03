@@ -14,54 +14,56 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <% if signed_in? %>
-              
-        <li><%= link_to "Pick-A-Dates", pickadates_path %></li>
-          <% else %> 
-    <% if !signed_in? %>
-      <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in!<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-                <%= form_for(:session, url: sessions_path) do |f| %>
-                <div id="notsignedinform">
-                    <li class='form-group'>
-                      <% f.label :email %>
-                      <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
-                    </li>
 
-                    <li class='form-group'>
-                      <% f.label :password %>
-                      <%= f.password_field :password, class: "form-control", placeholder: 'Password' %>
-                    </li>
-                </div>
-                  <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-                <% end %>
-          </ul>
-        </li>
-    <%end%>
-        
-        
-        
-          <% end %>
+		 <% if !signed_in? %>
+			<li class="dropdown">
+				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in!<b class="caret"></b></a>
+				 <ul class="dropdown-menu">
+						 <%= form_for(:session, url: sessions_path) do |f| %>
+						 <div id="notsignedinform">
+							  <li class='form-group'>
+								 <% f.label :email %>
+								 <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+							  </li>
+
+							  <li class='form-group'>
+								 <% f.label :password %>
+								 <%= f.password_field :password, class: "form-control", placeholder: 'Password' %>
+							  </li>
+						 </div>
+							<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+						 <% end %>
+				 </ul>
+			  </li>
+		 <%end%>
+        			
     <% if signed_in? %>
       <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Find a Date <b class="caret"></b></a>
+          <a href="<%=pickadates_path%>" class="dropdown" >Pick-A-Dates!<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+				 <li><%= link_to "All Pick-A-Dates", pickadates_path %></li>
+        <li><%= link_to "My Pick-A-Dates", my_pickadates_path %></li> 
+          </ul>
+      </li>			
+			
+			
+      <li class="dropdown">
+          <a href="#" class="dropdown">Find a Date <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><%= link_to "Search", users_path %></li>
             <li><%= link_to "I'm Feeling Lucky", user_path(@random_user) %></li>
           </ul>
-        </li>
+      </li>
     <%end%>
 
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
             <% if signed_in? %>
-              <li><%= link_to "My Pick-A-Dates", "#" %></li> 
               <li><%= link_to "Profile", current_user %></li> 
             <% end %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+          <a href="#" class="dropdown" >Options <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <% if signed_in? %>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>

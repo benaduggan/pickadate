@@ -20,6 +20,11 @@
        <%= f.label :lastname, "Last Name" %>
        <%= f.text_field :lastname, class: 'form-control' %>
      </div>
+      
+     <div class='form-group'>
+       <%= f.label :gender, "Gender" %>
+       <%= f.select :gender, ["Male","Female"], {}, class: 'form-control'%>
+     </div>
 
      <div class='form-group'>
        <%= f.label :hometown, "Hometown" %>
@@ -99,7 +104,7 @@
     <div class = 'form-group'>
       <%= f.label :floor_id, "Floor" %>
       <%= select_tag :dorm_id, options_from_collection_for_select(Dorm.all, "id", "name"), :prompt => "Select your dorm!", "class" => "form-control"%>
-      <%= select_tag :floor_id, options_from_collection_for_select([], "id", "name"),
+      <%= select_tag :floor_id, options_from_collection_for_select([], "id", "name"), :prompt => "Select your floor!",
       "data-option-dependent" => true,
       "data-option-observed" => "dorm_id",
       "data-option-url" => "/dorms/:dorm_id:/floors.json",

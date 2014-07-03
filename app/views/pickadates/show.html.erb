@@ -48,6 +48,10 @@
                       <h2 class="panel panel-heading">Time</h2>
                       <p class="well well-sm"><%= @date.time.strftime("%B %e at %l:%M%p") %></p>
                     </div><!--/span-->
+                    <div class="col-6 col-sm-6 col-lg-6 panel panel-primary">
+                      <h2 class="panel panel-heading">Cost</h2>
+                      <p class="well well-sm"><%="$" + @date.cost.to_s %></p>
+                    </div><!--/span-->
                 </div>
                </div>
             </div>
@@ -56,19 +60,18 @@
               <h2 class="panel panel-heading">Users</h2>
              <h4 class="well well-sm">Number of People Invited: <%= @date.users.length%></h4>
              <table class="well well-sm">
-               <thead>
-                   <th>Name</th>
-                   <th>Response</th>
-               </thead>
-               <% @date.users.all.each do |user| %>
-               <tr>
-                 <td><%= link_to user.username, user %></td>
-                 <td><%= user.user_pickadates.where(pickadate_id: params[:id]).first.rsvpstatus %></td>
-               </tr>
-               <%end%>
+                 <thead>
+                     <th>Name</th>
+                     <th>Response</th>
+                 </thead>
+
+                 <% @date.users.all.each do |user| %>
+                 <tr>
+                   <td><%= link_to user.username, user %></td>
+                   <td><%= user.user_pickadates.where(pickadate_id: params[:id]).first.rsvpstatus %></td>
+                 </tr>
+                 <%end%>
              </table>
              
            </div><!--/span-->
-              
-          </div><!--/row-->
-</div>
+</div><!--/row-->
