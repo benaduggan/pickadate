@@ -1,0 +1,21 @@
+<% if !dates.nil? %>
+<table class="table table-hover">
+  <thead>
+    <th>Title</th>
+    <th>Floor</th>
+    <th>Location</th>
+    <th>Starts on</th>
+  </thead>
+  <% dates.each do |date| %>
+    <tr class='userRow'>
+      
+      <td><%= link_to date.title, date %></td>
+      
+      <td><%=date.floor.name%>, <%=date.floor.dorm.name%></td>
+      <td><%=date.location%></td>
+      <td><%=date.time.strftime("%B %e at %l:%M%p") %></td>
+      
+      <a href=<%= user_path(date) %></a>
+  <% end %>
+</table>
+<% end %>  

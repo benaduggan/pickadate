@@ -9,27 +9,28 @@ UnknownBusiness::Application.routes.draw do
   match 'signout' => 'sessions#destroy', as: 'signout', via: [:get, :post]
 
   
-  root 'static_pages#home'
+	root 'static_pages#home'
   
-  get 'home', to: "static_pages#home", as: 'home'
-  get 'help', to: "static_pages#help", as: 'help'
-  get 'about', to: "static_pages#about", as: "about"
-  get 'contact', to: "static_pages#contact", as: 'contact'
+	get 'home', to: "static_pages#home", as: 'home'
+	get 'help', to: "static_pages#help", as: 'help'
+	get 'about', to: "static_pages#about", as: "about"
+	get 'contact', to: "static_pages#contact", as: 'contact'
   
-  resources :pickadates do
-    post :rsvpstatus, :on => :collection
-  end
-  
-  resources :users
+	resources :pickadates do
+		post :rsvpstatus, :on => :collection
+	end
+	post "pickadates/invite_user", to: 'pickadates#invite_user', as: "invite_user"
+	
+	resources :users
 
-  get "my_pickadates", to: 'users#my_pickadates', as: "my_pickadates"
+	get "my_pickadates", to: 'users#my_pickadates', as: "my_pickadates"
+	get "floor_pickadates", to: 'users#floor_pickadates', as: "floor_pickadates"
+	 
+	resources :sessions, only: [:new, :create, :destroy]
   
-  
-  resources :sessions, only: [:new, :create, :destroy]
-  
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: "sessions#new", as: 'login'
-  delete 'logout', to: "sessions#destroy", as: 'logout'
+	get 'signup', to: 'users#new', as: 'signup'
+	get 'login', to: "sessions#new", as: 'login'
+	delete 'logout', to: "sessions#destroy", as: 'logout'
   
   
   

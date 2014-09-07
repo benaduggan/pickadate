@@ -8,6 +8,21 @@ ready = ->
 $(document).ready(ready)
 $(document).on('page:load', ready)
 
+$(document).on('click', '#invite', ( ->
+    $.ajax({
+      type: "POST",
+      url: "/pickadates/invite_user",
+      data: { id: gon.date.id, user_id: $(this).attr("value") }
+      success:(data) ->
+        alert data.id
+        return false
+      error:(data) ->
+        return false
+    });
+    $(this).attr('class', 'btn btn-primary');
+));
+
+
 
 $(document).on('click', '#yes', ( ->
     $.ajax({

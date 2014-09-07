@@ -1,21 +1,21 @@
 class User < ActiveRecord::Base
-    has_many :user_pickadates
-    has_many :pickadates, through: :user_pickadates
-    belongs_to :floor
+   has_many :user_pickadates
+   has_many :pickadates, through: :user_pickadates
+   belongs_to :floor
   
-    before_save { self.email = email.downcase }
-    before_create :create_remember_token
-    VALID_USERNAME_REGEX = /[a-z0-9_-]\z/
-    validates :username, presence: true, uniqueness: true, length: { maximum: 30 }, :format => { :with => VALID_USERNAME_REGEX }
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-    has_secure_password
-    #validates :password, length: { minimum: 6 }
-    #validates :year, presence: true
-    #validates :major, presence: true
-	 validates :floor_id, presence: true
+   before_save { self.email = email.downcase }
+   before_create :create_remember_token
+   VALID_USERNAME_REGEX = /[a-z0-9_-]\z/
+   validates :username, presence: true, uniqueness: true, length: { maximum: 30 }, :format => { :with => VALID_USERNAME_REGEX }
+   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+   has_secure_password
+ 	#validates :password, length: { minimum: 6 }
+   #validates :year, presence: true
+   #validates :major, presence: true
+	#validates :floor_id, presence: true
 	
-  
+	
     include Uploadable
   
     def user

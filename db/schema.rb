@@ -46,7 +46,8 @@ ActiveRecord::Schema.define(version: 20140629164012) do
   create_table "user_pickadates", force: true do |t|
     t.string   "rsvpstatus"
     t.integer  "user_id"
-    t.string   "user_type",    default: "invited"
+    t.integer  "invited_by"
+    t.string   "user_type",    default: "host"
     t.integer  "pickadate_id"
     t.datetime "created_at"
     t.datetime "updated_at"

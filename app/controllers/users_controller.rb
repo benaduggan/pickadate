@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
   
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+	before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :show, :my_pickadates, :floor_pickadates]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
   
-  def my_pickadates    
+  def my_pickadates
     @dates = current_user.pickadates
   end
+	
+	def floor_pickadates #Returns the current users floor's pickadates
+		@dates = Pickadate.all.where(:floor => current_user.floor) 
+	end
   
   def index
     @users = User.paginate(page: params[:page])
@@ -30,6 +34,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+	 gon.user = @user
+	  @pickadates = current_user.pickadates #this is the list of your pickadates that you can invite people to
   end
   
   def edit

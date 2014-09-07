@@ -1,17 +1,38 @@
 class PickadatesController < ApplicationController
   respond_to :html, :js
   
+	def invite_user
+		@user = User.find_by_id(params[:user_id])
+		@user.pickadate_ids = @user.pickadate_ids.append(params[:id])
+		@user.save!
+		
+		@user_pickadate = @user.user_pickadates.where(pickadate_id: params[:id]).first
+		@user_pickadate.invited_by = current_user.id
+		@user_pickadate.user_type = "guest"
+		
+		if @user_pickadate.save
+			respond_to do |format|
+				format.js { render :json => "Success!" }
+			end
+		else
+			flash[:danger] = "There was an error in the rsvpstatus... the userpickadate could not be saved i think"
+			redirect_to home_path
+		end
+	end
+		
+	
   
   def rsvpstatus
     @user_pickadate = current_user.user_pickadates.where(pickadate_id: params[:id]).first
-    puts @user_pickadate.rsvpstatus
-    puts params
     @user_pickadate.rsvpstatus = params[:rsvpstatus]
-    @user_pickadate.save
-
-    respond_to do |format|
-      format.js { render :json => "Success!" }
-    end
+    if @user_pickadate.save
+		 respond_to do |format|
+			format.js { render :json => "Success!" }
+		 end
+	 else
+		 flash[:danger] = "There was an error in the rsvpstatus... the userpickadate could not be saved i think"
+		 redirect_to home_path
+	 end
   end
     
   
@@ -43,11 +64,17 @@ class PickadatesController < ApplicationController
   def show
     @date = Pickadate.find(params[:id])
     gon.date = @date
-    
+	   
     if current_user.user_pickadates.where(pickadate_id: params[:id]).length == 1
       gon.currentrsvpstatus = current_user.user_pickadates.where(pickadate_id: params[:id]).first.rsvpstatus
     end
     @creator = User.find_by(@date.creator)
+	 
+	 if current_user.gender = "Male"
+		 @users = User.all.where(gender: 'Female')
+	 else
+		 @users = User.all.where(gender: 'Male')
+	 end
   end
   
   def edit

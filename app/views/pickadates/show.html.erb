@@ -18,17 +18,19 @@
                 -->
 
                <%= @date.description %>
+           </p>
               
-              
-              <% if current_user.floor == @date.floor %>
-              <div class="pull-right">
-              <button class="btn btn-default" id="yes" >Attending</button>
-              <button class="btn btn-default" id="maybe" >Maybe</button>
-              <button class="btn btn-default" id="no">Eh... No.</button>
-              </div>
+				 <% if current_user.pickadates.all.include? @date %>
+						 <div class='row' id="buttongroup">
+							 <button href="#userModal" role="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#myModal">Invite your date!</button>
+							 <div class="pull-right">
+								 <button class="btn btn-default" id="yes" >Attending</button>
+								 <button class="btn btn-default" id="maybe" >Maybe</button>
+								 <button class="btn btn-default" id="no">Eh... No.</button>
+							 </div>
+						 </div>
               <%end%>
               
-            </p>
           </div>
 
           <div class="col-lg-8" id="pickadateinfo">
@@ -48,10 +50,14 @@
                       <h2 class="panel panel-heading">Time</h2>
                       <p class="well well-sm"><%= @date.time.strftime("%B %e at %l:%M%p") %></p>
                     </div><!--/span-->
+						  
+						  <% if current_user.floor == @date.floor %>
                     <div class="col-6 col-sm-6 col-lg-6 panel panel-primary">
                       <h2 class="panel panel-heading">Cost</h2>
                       <p class="well well-sm"><%="$" + @date.cost.to_s %></p>
                     </div><!--/span-->
+						  <%end%>
+						  
                 </div>
                </div>
             </div>
@@ -74,4 +80,73 @@
              </table>
              
            </div><!--/span-->
+
+
 </div><!--/row-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		 
+		 
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+		 
+		 
+      <div class="modal-body">
+			<table class="table table-hover">
+			  <thead>
+				 <th></th>
+				 <th>Name</th>
+				 <th>Floor</th>
+				 <th>Major</th>
+				 <th>Class Of</th>
+				 <th></th>
+			  </thead>
+			  <% @users.each do |user| %>
+				 <tr class='userRow'>
+
+					 <td width='80px'>
+					  <% if user.pictureurl==nil %>
+					  <%= image_tag("http://imgur.com/1qXcMaY.jpg", class: 'profilePicture', height: "50", align: 'left')%>
+					  <% else %>
+					  <%= image_tag(user.pictureurl, class: 'profilePicture', height: "50", align: 'left') %>              
+					  <%end%>
+					</td>
+
+					<td>
+					  <a href=<%= user_path(user) %></a>
+					  <%= link_to user.username, user %>
+					  <% if current_user.admin? && !current_user?(user) %>
+					  | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure you want to delete #{user.username}?" } %>
+					  <% end %>
+					</td>
+
+					<td><%=user.floor.name%></td>
+
+					<td><%=user.major%></td>
+					<td><%=user.year%></td>
+					 <td><button class='btn btn-primary btn-sm' value="<%= user.id %>" id="invite">Invite!</button></td>
+
+				 </tr>
+				 <% end %>
+			</table>
+      </div>
+		 
+		 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

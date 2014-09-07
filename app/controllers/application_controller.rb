@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     format.json { render :json => dorm.floors }
     end
   end
-  
   helper :users
   
   before_filter :random_user
@@ -28,7 +27,7 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    return @random_user = User.first
+    return @random_user
   end
   
   private

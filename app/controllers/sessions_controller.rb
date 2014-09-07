@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       
     sign_in user
       
-    if user.first then
+    if user.first.nil? then
       user.toggle!(:first)
       redirect_to edit_user_path(user)
     else
