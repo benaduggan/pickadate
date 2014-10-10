@@ -37,5 +37,9 @@ module SessionsHelper
       redirect_to login_path, :flash => { :info => "Please sign in." }
     end
   end
+	
+	def admin_user
+      redirect_to root_path unless current_user.admin?
+  end
   
 end

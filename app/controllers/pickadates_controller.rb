@@ -1,6 +1,9 @@
 class PickadatesController < ApplicationController
   respond_to :html, :js
-  
+	before_action :signed_in_user
+	before_action :ensure_current_user_is__correct_pa_or_admin, only: [:edit, :update, :destroy] #PA's can only edit the dates they created... also Admin rule!
+	before_action :ensure_current_user_is_pa, only: [:new,:create] #Only PA's can make dates!
+	
 	def invite_user
 		@user = User.find_by_id(params[:user_id])
 		@user.pickadate_ids = @user.pickadate_ids.append(params[:id])
@@ -19,8 +22,6 @@ class PickadatesController < ApplicationController
 			redirect_to home_path
 		end
 	end
-		
-	
   
   def rsvpstatus
     @user_pickadate = current_user.user_pickadates.where(pickadate_id: params[:id]).first
@@ -35,7 +36,6 @@ class PickadatesController < ApplicationController
 	 end
   end
     
-  
   def index
     @dates = Pickadate.all.sort_by &:time
   end
@@ -104,6 +104,16 @@ class PickadatesController < ApplicationController
   end
 
  private
+		def ensure_current_user_is_pa
+			redirect_to root_path unless current_user.pa?
+		end
+		
+		def ensure_current_user_is__correct_pa_or_admin
+			@date = Pickadate.find(params[:id])	
+			redirect_to root_path unless ((current_user.id == @date.creator) or current_user.admin?)
+			return true
+		end
+		
     def date_params
       params.require(:pickadate).permit(:title, :time, :description, :location, :cost )
     end  

@@ -25,7 +25,8 @@ UnknownBusiness::Application.routes.draw do
 
 	get "my_pickadates", to: 'users#my_pickadates', as: "my_pickadates"
 	get "floor_pickadates", to: 'users#floor_pickadates', as: "floor_pickadates"
-	 
+	get "invitations", to: 'users#invitations', as: "invitations" 
+	
 	resources :sessions, only: [:new, :create, :destroy]
   
 	get 'signup', to: 'users#new', as: 'signup'

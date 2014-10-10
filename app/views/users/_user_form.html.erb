@@ -101,7 +101,7 @@
       <%= f.select :year, [2018,2017,2016,2015],{}, class: 'form-control' %>
     </div>
 
-    <div class = 'form-group'>
+    <div class = 'form-group' id="hidden_for_user_edit">
       <%= f.label :floor_id, "Floor" %>
       <%= select_tag :dorm_id, options_from_collection_for_select(Dorm.all, "id", "name"), :prompt => "Select your dorm!", "class" => "form-control"%>
       <%= select_tag :floor_id, options_from_collection_for_select([], "id", "name"), :prompt => "Select your floor!",

@@ -1,6 +1,7 @@
 class DormsController < ApplicationController
   before_action :set_dorm, only: [:show, :edit, :update, :destroy]
-
+	before_action :admin_user
+	
   # GET /dorms
   # GET /dorms.json
   def index

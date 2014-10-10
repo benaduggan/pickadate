@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
   
-	before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :show, :my_pickadates, :floor_pickadates]
-  before_action :correct_user, only: [:edit, :update]
+	before_action :signed_in_user, only: [:index, :edit, :update, :show, :destroy, :my_pickadates, :floor_pickadates, :invitations]
+	before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
-  
-  
+	
+	def invitations
+		@invitations = current_user.user_pickadates.where(:rsvpstatus => nil).all
+		@dates = []
+		
+		@invitations.each do |date|
+			@dates.append(date.pickadate)
+		end
+	end
+	
   def my_pickadates
     @dates = current_user.pickadates
   end
@@ -71,11 +79,7 @@ class UsersController < ApplicationController
     end
     
     def update_params
-      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :floor_id, :gender)
-    end
-    
-    def admin_user
-      redirect_to root_path unless current_user.admin?
+      params.require(:user).permit(:firstname, :lastname, :username, :email, :age, :major, :year, :aboutme, :relationshipstatus, :password, :password_confirmation, :hometown, :upload, :gender)
     end
     
     def correct_user

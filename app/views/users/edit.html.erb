@@ -1,5 +1,17 @@
 <% @title = "Edit " + @user.username %>
 
+
+<%if current_user.admin != false %>
+<head>
+<style>
+	#hidden_for_user_edit{
+		visibility: hidden;
+		height:0px;
+	}
+</style>
+</head>
+<%end%>
+
 <h1> Edit Your Profile </h1>
 
     	<%= form_for(@user) do |f| %>
@@ -10,3 +22,4 @@
           <%= f.submit "Update Profile", class: "btn btn-primary" %>
         </div>
       <% end %>
+
