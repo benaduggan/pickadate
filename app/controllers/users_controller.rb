@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
-  
   def my_pickadates
     @dates = current_user.pickadates
   end
@@ -25,7 +24,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save then
       sign_in(@user)
-      flash[:success] = "You succesfully created an account!"
+      UserMailer.welcome_email(@user)
+      flash[:success] = "Welcome #{@user.firstname}"
       redirect_to edit_user_path(@user)
     else
       render 'new'
