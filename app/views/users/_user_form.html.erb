@@ -86,10 +86,24 @@
         <%= f.text_field :email, class: 'form-control' %>
       </div>
 			
-			<div class='form-group'>
-				<%= f.label :receives_emails, "Receive emails about my Pick-A-Dates*" %>
-				<%= f.check_box :receives_emails %>
+			<label>Receive emails when</label>
+			<div class='checkbox'>
+				<label>
+					<%= f.check_box :receives_emails, class: "moveitalittle" %> I've been invited to Pick-A-Dates
+				</label>
       </div>
+			<div class='checkbox'>
+				<label>
+					<%= f.check_box :receives_emails, class: "moveitalittle" %> my floor has new Pick-A-Dates
+				</label>
+      </div>
+			<div class='checkbox'>
+				<label>
+					<%= f.check_box :receives_emails, class: "moveitalittle" %> someone responds to my invitation
+				</label>
+      </div>
+			
+			
     </div> <!-- End Account Information -->
 
 
