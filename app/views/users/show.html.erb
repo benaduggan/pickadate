@@ -3,7 +3,7 @@
 <div class="row">
 
     <div class="col-xs-12">
-		 <div><% if current_user == @user %><%= link_to "Edit Profile", edit_user_path(@user), "class" => "btn btn-primary pull-right" %><%end%></div>
+		 <div><% if current_user == @user %><%= link_to "Edit Profile", edit_user_path(@user), "class" => "btn btn-primary pull-right", "id" => "showeditbutton" %><%end%></div>
           <div class="jumbotron" id="userShowJumbotron">
             <h1><%= @user.firstname + ' ' + @user.lastname %> <% if @user.pa? %>| PA <%end%> </h1>
             <p>
@@ -49,7 +49,6 @@
         </div>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -69,7 +68,7 @@
 				  </thead>
 					<% @pickadates.each do |date| %>
 						 <tr class='userRow'>
-							<td><%=date.title%></td>
+							<td><%= link_to date.title, pickadate_path(date)%></td>
 							<td><%=date.floor.name%></td>
 							<td><%=date.location%></td>
 							<td><%=date.time%></td>
