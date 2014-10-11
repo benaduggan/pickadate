@@ -12,13 +12,13 @@ class PickadatesController < ApplicationController
 		@user_pickadate = @user.user_pickadates.where(pickadate_id: params[:id]).first
 		@user_pickadate.invited_by = current_user.id
 		@user_pickadate.user_type = "guest"
-		
+			q
 		if @user_pickadate.save
 			respond_to do |format|
 				format.js { render :json => "Success!" }
 			end
 		else
-			flash[:danger] = "There was an error in the rsvpstatus... the userpickadate could not be saved i think"
+			flash[:danger] = "There was an error in the rsvpstatus... the userpickadate could not be saved... i think..."
 			redirect_to home_path
 		end
 	end
