@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :edit, :update, :show, :destroy, :my_pickadates, :floor_pickadates, :invitations]
 	before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
-	
-	def invitations
+
+  def invitations
 		@invitations = current_user.user_pickadates.where(:rsvpstatus => nil).all
 		@dates = []
 		
@@ -33,7 +33,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save then
       sign_in(@user)
-      flash[:success] = "You succesfully created an account!"
+      UserMailer.welcome_email(@user)
+      flash[:success] = "Welcome #{@user.firstname}"
       redirect_to edit_user_path(@user)
     else
       render 'new'

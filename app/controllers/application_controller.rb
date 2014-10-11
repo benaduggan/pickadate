@@ -26,8 +26,9 @@ class ApplicationController < ActionController::Base
           @random_user = User.where(:gender => "Female")[rand(0..User.where(:gender => "Female").length-1)] unless User.where(:gender => "Female").length == 0
         end
       end
-    end
+    @random_user = User.all[0]
     return @random_user
+    end
   end
   
   private

@@ -1,7 +1,7 @@
 UnknownBusiness::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-ENV['FACEBOOK_APP_ID'] = "655498167848316";
-ENV['FACEBOOK_SECRET'] = "aa5293d55934d3432f89aa0e21b8e291";
+ENV['FACEBOOK_APP_ID'] = "1477351682523369";
+ENV['FACEBOOK_SECRET'] = "d45640698354566d1d0c8261ce499a2f";
   # Code is not reloaded between requests.
   config.cache_classes = true
 
