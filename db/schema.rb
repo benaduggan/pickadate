@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 20141011014057) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "gender",             default: "Male"
-    t.integer  "dorm_id"
     t.boolean  "receives_emails",    default: true
   end
 
