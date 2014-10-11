@@ -5,14 +5,16 @@ class PickadatesController < ApplicationController
 	before_action :ensure_current_user_is_pa, only: [:new,:create] #Only PA's can make dates!
 	
 	def invite_user
-		@user = User.find_by_id(params[:user_id])
-		@user.pickadate_ids = @user.pickadate_ids.append(params[:id])
-		@user.save!
+    @inviteduser = User.find_by_id(params[:user_id])
+		@inviteduser.pickadate_ids = @inviteduser.pickadate_ids.append(params[:id])
+		@inviteduser.save!
+    
+    UserMailer.invite_user(@inviteduser).deliver!
 		
-		@user_pickadate = @user.user_pickadates.where(pickadate_id: params[:id]).first
+		@user_pickadate = @inviteduser.user_pickadates.where(pickadate_id: params[:id]).first
 		@user_pickadate.invited_by = current_user.id
 		@user_pickadate.user_type = "guest"
-
+		
 		if @user_pickadate.save
 			respond_to do |format|
 				format.js { render :json => "Success!" }
