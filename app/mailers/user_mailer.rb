@@ -7,4 +7,9 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Welcome to the Pick-A-Date Site!')
   end
   
+  def invite_user(user)
+    @user = user
+    mail(to: @user.email, subject: "You have been invited to a TU Pick-A-Date!")
+  end
+  
 end

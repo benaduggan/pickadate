@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629164012) do
+ActiveRecord::Schema.define(version: 20141011014057) do
 
   create_table "dorms", force: true do |t|
     t.string   "name",       default: "Unknown"
@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 20140629164012) do
 
   create_table "pickadates", force: true do |t|
     t.integer  "floor_id"
-    t.string   "title",       default: ""
-    t.string   "location",    default: ""
-    t.datetime "time",        default: '2018-07-18 00:12:09'
-    t.string   "description", default: ""
-		t.integer  "creator",			default: 0
-		t.datetime "created_at"
-		t.datetime "updated_at"
+    t.string   "title",       default: "You'll really want to change this..."
+    t.string   "location",    default: "Maybe in your dorm's lobby?"
+    t.datetime "time",        default: '2014-07-18 00:12:09'
+    t.string   "description", default: "You might describe what the date will be here..."
+    t.integer  "creator"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.float    "cost",        default: 0.0
   end
 
@@ -63,13 +63,13 @@ ActiveRecord::Schema.define(version: 20140629164012) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "major",              default: "unspecified"
-    t.string   "aboutme",            default: ""
+    t.string   "aboutme",            default: "Apparently I was too lazy to change this myself"
     t.string   "hometown",           default: "Upland, Indiana"
     t.string   "relationshipstatus", default: "Unspecified"
     t.string   "pictureurl",         default: "http://imgur.com/1qXcMaY.jpg"
-    t.string   "firstname",          default: ""
-    t.string   "lastname",           default: ""
-    t.integer  "age",                default: 19
+    t.string   "firstname",          default: "John"
+    t.string   "lastname",           default: "Smith"
+    t.integer  "age",                default: 18
     t.integer  "year",               default: 2018
     t.boolean  "admin",              default: false
     t.boolean  "first",              default: true
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 20140629164012) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "gender",             default: "Male"
+    t.integer  "dorm_id"
+    t.boolean  "receives_emails",    default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
