@@ -50,27 +50,6 @@ $(document).on('click', '#yes', (function() {
   return $("#no").attr('class', 'btn btn-default');
 }));
 
-$(document).on('click', '#maybe', (function() {
-  $.ajax({
-    type: "POST",
-    url: "rsvpstatus",
-    data: {
-      id: gon.date.id,
-      rsvpstatus: "maybe"
-    },
-    success: function(data) {
-      console.log(data.id);
-      return false;
-    },
-    error: function(data) {
-      return false;
-    }
-  });
-  $(this).attr('class', 'btn btn-primary');
-  $("#yes").attr('class', 'btn btn-default');
-  return $("#no").attr('class', 'btn btn-default');
-}));
-
 $(document).on('click', '#no', (function() {
   $.ajax({
     type: "POST",
@@ -113,27 +92,6 @@ $(document).on('click', '#iyes', (function() {
   });
   $(this).attr('class', 'btn btn-primary btn-sm');
   $("#imaybe").attr('class', 'btn btn-default btn-xs');
-  return $("#ino").attr('class', 'btn btn-default btn-xs');
-}));
-
-$(document).on('click', '#imaybe', (function() {
-  $.ajax({
-    type: "POST",
-    url: "pickadates/rsvpstatus",
-    data: {
-      id: $(this).attr("value"),
-      rsvpstatus: "maybe"
-    },
-    success: function(data) {
-      console.log(data.id);
-      return false;
-    },
-    error: function(data) {
-      return false;
-    }
-  });
-  $(this).attr('class', 'btn btn-primary btn-sm');
-  $("#iyes").attr('class', 'btn btn-default btn-xs');
   return $("#ino").attr('class', 'btn btn-default btn-xs');
 }));
 

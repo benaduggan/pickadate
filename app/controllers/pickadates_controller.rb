@@ -25,18 +25,22 @@ class PickadatesController < ApplicationController
 		end
 	end
   
-  def rsvpstatus
-    @user_pickadate = current_user.user_pickadates.where(pickadate_id: params[:id]).first
-    @user_pickadate.rsvpstatus = params[:rsvpstatus]
-    if @user_pickadate.save
-		 respond_to do |format|
-			format.js { render :json => "Success!" }
-		 end
-	 else
-		 flash[:danger] = "There was an error in the rsvpstatus... the userpickadate could not be saved i think"
-		 redirect_to home_path
-	 end
-  end
+	def rsvpstatus
+		@user_pickadate = current_user.user_pickadates.where(pickadate_id: params[:id]).first
+		@user_pickadate.rsvpstatus = params[:rsvpstatus]
+		puts "im here"
+		if @user_pickadate.save
+			if @user_pickadate.rsvpstatus == "no"
+					@user_pickadate.destroy
+			end
+			respond_to do |format|
+				format.js { render :json => "Success!" }
+			end
+		else
+			flash[:danger] = "There was an error in the rsvpstatus... the userpickadate could not be saved i think"
+			redirect_to home_path
+		end
+	end
     
   def index
     @dates = Pickadate.all.sort_by &:time
