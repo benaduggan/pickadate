@@ -12,7 +12,7 @@ class PickadatesController < ApplicationController
 		@user_pickadate = @user.user_pickadates.where(pickadate_id: params[:id]).first
 		@user_pickadate.invited_by = current_user.id
 		@user_pickadate.user_type = "guest"
-			q
+
 		if @user_pickadate.save
 			respond_to do |format|
 				format.js { render :json => "Success!" }
