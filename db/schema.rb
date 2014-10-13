@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011014057) do
+ActiveRecord::Schema.define(version: 20141013211050) do
 
   create_table "dorms", force: true do |t|
     t.string   "name",       default: "Unknown"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20141011014057) do
     t.integer  "pickadate_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "has_paid",     default: false
   end
 
   add_index "user_pickadates", ["pickadate_id"], name: "index_user_pickadates_on_pickadate_id"

@@ -18,6 +18,10 @@ UnknownBusiness::Application.routes.draw do
   
 	resources :pickadates do
 		post :rsvpstatus, :on => :collection
+		member do
+			post :paymentsubmit
+			get :payment
+		end
 	end
 	post "pickadates/invite_user", to: 'pickadates#invite_user', as: "invite_user"
 	
@@ -26,6 +30,7 @@ UnknownBusiness::Application.routes.draw do
 	get "my_pickadates", to: 'users#my_pickadates', as: "my_pickadates"
 	get "floor_pickadates", to: 'users#floor_pickadates', as: "floor_pickadates"
 	get "invitations", to: 'users#invitations', as: "invitations" 
+	
 	
 	resources :sessions, only: [:new, :create, :destroy]
   

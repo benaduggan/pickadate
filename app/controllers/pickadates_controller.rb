@@ -1,8 +1,16 @@
 class PickadatesController < ApplicationController
   respond_to :html, :js
 	before_action :signed_in_user
-	before_action :ensure_current_user_is__correct_pa_or_admin, only: [:edit, :update, :destroy] #PA's can only edit the dates they created... also Admin rule!
+	before_action :ensure_current_user_is__correct_pa_or_admin, only: [:edit, :update, :destroy, :payment] #PA's can only edit the dates they created... also Admin rule!
 	before_action :ensure_current_user_is_pa, only: [:new,:create] #Only PA's can make dates!
+	
+	def payment
+		@user_pickadates = Pickadate.find_by_id(params[:id]).user_pickadates.where(user_type: "host").where(rsvpstatus: "yes")
+	end
+	
+	def paymentsubmit
+		
+	end
 	
 	def invite_user
     @inviteduser = User.find_by_id(params[:user_id])
