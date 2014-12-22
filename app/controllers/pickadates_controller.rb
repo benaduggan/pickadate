@@ -5,7 +5,9 @@ class PickadatesController < ApplicationController
 	before_action :ensure_current_user_is_pa, only: [:new,:create] #Only PA's can make dates!
 	
 	def payment
+		@user_pickadate = Pickadate.find_by_id(params[:id]).user_pickadates.where(user_type: "host").where(rsvpstatus: "yes")[0]
 		@user_pickadates = Pickadate.find_by_id(params[:id]).user_pickadates.where(user_type: "host").where(rsvpstatus: "yes")
+		
 	end
 	
 	def paymentsubmit

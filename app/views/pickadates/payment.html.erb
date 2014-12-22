@@ -1,3 +1,21 @@
-<% for @user_pickadates.each do |thingy| %>
-	<%= thingy %>
+<% if @user_pickadates.length > 0 %>
+
+<% @user_pickadates.each do |user_pickadate| %>
+				<h1><%= user_pickadate.user.username %> </h1>
+				<h1><%= user_pickadate.has_paid %> </h1>
+			<% end %>
+<div class='row'>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Has Paid?</th>
+		</tr>
+			<tr>
+				<% @user_pickadates.each do |user_pickadate| %>
+					<td><%= user_pickadate.user.username %> </td>
+					<td><%= user_pickadate.has_paid %> </td>
+				<% end %>
+			</tr>
+	</table>
+</div>	
 <% end %>
