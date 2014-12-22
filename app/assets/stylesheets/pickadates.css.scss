@@ -2,6 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#panel{
+	h3{
+		margin:0;
+	}
+	div{
+		padding:0;
+		border: 7px solid white; 
+		border-bottom:none; 
+		margin-bottom:0;
+	}
+}
+
+#people{
+		h3{
+		margin:0;
+	}
+	div{
+		border-right: 5px solid white; 
+		border-left: 5px solid white; 
+	}
+}
+
+
+
 #circlething{
   width: 30px;
   height: 30px;

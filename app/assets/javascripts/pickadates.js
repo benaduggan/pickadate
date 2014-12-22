@@ -1,14 +1,41 @@
 var ready;
 
+setUpPermissionsCheckboxes = function() {
+    $('input[type="checkbox"]').each(function() {
+        var $label = $(this).parents('label');
+        if ($(this).prop('checked')) {
+            $label.addClass('btn-success');
+            $label.find('.yesno').text('Yes');
+        }
+        else {
+            $label.addClass('btn-danger');
+            $label.find('.yesno').text('No');
+        }
+    });
+    $('input[type="checkbox"]').click(function() {
+        var $label = $(this).parents('label');
+        if ($(this).parents('label').hasClass('btn-danger')) {
+            $label.removeClass('btn-danger').addClass('btn-success');
+            $label.find('.yesno').text('Yes');
+        }
+        else if ($(this).parents('label').hasClass('btn-success')) {
+            $label.removeClass('btn-success').addClass('btn-danger');
+            $label.find('.yesno').text('No');
+        }
+    });
+}
+$(document).ready(setUpPermissionsCheckboxes);
+
 ready = function() {
   if (typeof gon !== "undefined" && gon !== null) {
     return $("#" + gon.currentrsvpstatus).attr('class', 'btn btn-primary');
   }
+	
 };
 
 $(document).ready(ready);
-
 $(document).on('page:load', ready);
+
 
 $(document).on('click', '#invite', (function() {
   $.ajax({
@@ -32,7 +59,7 @@ $(document).on('click', '#invite', (function() {
 $(document).on('click', '#yes', (function() {
   $.ajax({
     type: "POST",
-    url: "rsvpstatus",
+    url: "/pickadates/rsvpstatus",
     data: {
       id: gon.date.id,
       rsvpstatus: "yes"
@@ -53,7 +80,7 @@ $(document).on('click', '#yes', (function() {
 $(document).on('click', '#no', (function() {
   $.ajax({
     type: "POST",
-    url: "rsvpstatus",
+    url: "/pickadates/rsvpstatus",
     data: {
       id: gon.date.id,
       rsvpstatus: "no"

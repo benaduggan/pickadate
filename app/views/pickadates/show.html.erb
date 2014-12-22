@@ -2,7 +2,8 @@
 
 <div class="row">
     <div class="col-xs-12">
-      <div><% if current_user == @creator %><%= link_to "Edit Date", edit_pickadate_path(@date), "class" => "btn btn-primary pull-right" %><%end%></div>
+			<div><% if current_user == @creator %><%= link_to "View Payments", payment_pickadate_path(@date), "class" => "btn btn-primary pull-left" %><%end%></div>
+			<div><% if current_user == @creator %><%= link_to "Edit Date", edit_pickadate_path(@date), "class" => "btn btn-primary pull-right" %><%end%></div>
           <div class="jumbotron">
 
             <h1><%= @date.title %></h1>

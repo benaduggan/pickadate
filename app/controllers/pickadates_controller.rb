@@ -5,9 +5,8 @@ class PickadatesController < ApplicationController
 	before_action :ensure_current_user_is_pa, only: [:new,:create] #Only PA's can make dates!
 	
 	def payment
-		@user_pickadate = Pickadate.find_by_id(params[:id]).user_pickadates.where(user_type: "host").where(rsvpstatus: "yes")[0]
-		@user_pickadates = Pickadate.find_by_id(params[:id]).user_pickadates.where(user_type: "host").where(rsvpstatus: "yes")
-		
+		@pickadate = Pickadate.find_by_id(params[:id])
+		@user_pickadates = @pickadate.user_pickadates.where(user_type: "host").where(rsvpstatus: "yes")
 	end
 	
 	def paymentsubmit
@@ -38,11 +37,11 @@ class PickadatesController < ApplicationController
 	def rsvpstatus
 		@user_pickadate = current_user.user_pickadates.where(pickadate_id: params[:id]).first
 		@user_pickadate.rsvpstatus = params[:rsvpstatus]
-		puts "im here"
+	
 		if @user_pickadate.save
-			if @user_pickadate.rsvpstatus == "no"
-					@user_pickadate.destroy
-			end
+# 			if @user_pickadate.rsvpstatus == "no"
+# 					@user_pickadate.destroy
+# 			end
 			respond_to do |format|
 				format.js { render :json => "Success!" }
 			end
